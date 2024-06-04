@@ -1,0 +1,144 @@
+.heroSectionParent {
+  height: 100vh;
+  width: 100%;
+  background-color: black;
+  position: relative;
+}
+.rectangle {
+  height: 100vh;
+  width: 100%;
+  background-color: black;
+  background: linear-gradient(
+      90deg,
+      rgba(115, 115, 115, 0.1) 0%,
+      rgba(0, 0, 0, 1) 80%,
+      rgba(222, 222, 222, 0.1) 92%
+    )
+    repeat-x;
+  background-size: min(10vw, 90px) 100vh;
+  /* background: linear-gradient(
+      90deg,
+      rgba(115, 115, 115, 0.3) 0%,
+      rgba(0, 0, 0, 0.3) 81.12%,
+      rgba(222, 222, 222, 0.3) 100.18%
+    )
+    repeat-x; */
+  background-blend-mode: overlay;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.rectangle svg rect {
+  mix-blend-mode: overlay;
+}
+.circle1,
+.circle2,
+.circle3 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(125px);
+  aspect-ratio: 1/1;
+}
+
+.circle1 {
+  top: 85%;
+  left: 50%;
+  width: 35%;
+
+  /* height: 600px; */
+  filter: blur(100px);
+  background: #3270ff;
+  opacity: 0.8;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.circle2 {
+  top: 698.5px; /* Circle's center y position */
+  left: 233.5px; /* Circle's center x position */
+  width: max(45%, 900px); /* Circle diameter + 2*blur radius */
+  /* Circle diameter + 2*blur radius */
+  background: #0500ff;
+  filter: blur(190px);
+  transform: translate(-50%, -50%);
+}
+.ellipse {
+  position: absolute;
+  width: 750px;
+  height: 478px;
+  left: 70%;
+  top: 522px;
+  background: #0029ff;
+  filter: blur(148.15px);
+}
+
+/* Ellipse 171 */
+.tagline {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 90%;
+  font-size: min(7.6vw, 9rem); /* Responsive font size */
+  color: white;
+  margin: 0;
+  z-index: 100;
+  font-family: var(--font-poppins);
+  font-weight: 500;
+  line-height: 118px;
+  letter-spacing: -0.04em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  gap: 5px;
+}
+.taglineword {
+  text-shadow: 0px 5px 90px rgba(0, 0, 0, 0.5);
+}
+
+.headingDot {
+  color: #ff8a00;
+}
+
+.circle3 {
+  top: 50%; /* Circle's center y position */
+  left: 95%; /* Circle's center x position */
+  width: 400px; /* Circle diameter + 2*blur radius */
+  height: 400px; /* Circle diameter + 2*blur radius */
+  background: #004bf9;
+  filter: blur(140px);
+  transform: translate(0%, -50%);
+  border: 1px solid red;
+}
+
+.test {
+  background-color: #151516;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+/* Rectangle 6507 */
+.testinside {
+  width: 90px;
+  height: 100%;
+  /* left: 1350px; */
+
+  background: linear-gradient(
+      90deg,
+      rgba(115, 115, 115, 0.1) 0%,
+      rgba(0, 0, 0, 0.1) 74%,
+      rgba(222, 222, 222, 0.1) 92%
+    )
+    repeat-x;
+  background-blend-mode: overlay;
+}
+
+/* Engage. */
+.hiddentextopacity {
+  opacity: 0.24;
+}

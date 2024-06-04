@@ -1,0 +1,114 @@
+.main{
+    padding-bottom: 100px;
+    background: rgb(13,14,28);
+    background: linear-gradient(180deg, rgba(13,14,28,1) 0%, rgba(16,25,63,1) 95%);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+.top1{
+    background: rgb(38,104,255);
+    background: radial-gradient(circle, rgba(38,104,255,0.34) 0%, rgba(0,0,0,0) 50%);
+    width: 75%;
+    aspect-ratio: 1;
+    position: absolute;    
+    top: -36%;
+    left: 28%;
+    opacity: 1;
+    z-index: 1;
+}
+
+.center{
+    background: rgb(38,104,255);
+    background: radial-gradient(circle, rgba(38,104,255,0.34) 0%, rgba(0,0,0,0) 50%);
+    width: 75%;
+    aspect-ratio: 1;
+    position: absolute;    
+    top: 36%;
+    left: 40%;
+    opacity: 1;
+    z-index: 1;
+}
+
+.list{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 100px auto;
+    gap:20px;
+    position: relative;
+    z-index: 120;
+}
+
+.item{
+    background: black;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px;
+    height: 160px;
+    overflow: hidden;
+    position: relative;
+}
+
+.item::before{
+    content: "";
+    position: absolute;
+    background-color: blue;
+    height: 160px;
+    width: 100%;
+    padding: 0;
+    border-radius: 10px;
+    bottom: -100%;
+    left: 0;
+    transition: bottom 2s;
+}
+
+.item:hover::before {
+    bottom: 0;
+  }
+
+.group{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-size: 17px;
+    z-index: 140;
+}
+
+.answer{
+    padding: 8px;
+    border-radius: 8px;
+    display: none;
+    position: relative;
+    transition: display 4s ease-in;
+    transform: translateY(60px);
+    opacity: 0;
+    transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+}
+
+.item:hover .answer{
+    display: block;
+    transform: translateY(0px);
+    opacity: 1;
+}
+
+.arrow{
+    font-size: 20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+    border-radius: 100%;
+    background: linear-gradient(0deg, rgba(5,0,255, 0.8) 0%, rgba(30, 30, 30, 0.397) 95%);
+    transition: transform 1s ease-in;
+}
+
+.item:hover .arrow{
+    transform: rotate(180deg);
+    transition: transform 1s ease-out;
+}

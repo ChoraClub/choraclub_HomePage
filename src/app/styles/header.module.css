@@ -1,0 +1,85 @@
+.headingParent {
+  position: absolute;
+  z-index: 1000;
+  width: calc(100% - 44px);
+  top: 22px;
+  left: 22px;
+  margin: 0 auto;
+  background: #ffffff;
+  box-shadow: 0px 4px 53.7px rgba(0, 0, 0, 0.11);
+  backdrop-filter: blur(19.4px);
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 65px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-family: var(--font-poppins);
+  font-weight: 500;
+  font-size: 2rem;
+  line-height: normal;
+}
+
+.logo > svg {
+  height: 35px;
+  width: 35px;
+  margin-right: 5px;
+}
+
+.launchappbtn {
+  background: #004dff;
+  border-radius: 138px;
+  padding: 10px 40px;
+  font-family: var(--font-poppins);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 27px;
+}
+
+/* 🟣 Dark-wave */
+.launchappbtn::before {
+  position: absolute;
+  height: 62.36px;
+  left: -728.51px;
+  right: 694.77px;
+  top: -0.04px;
+
+  background: #0500ff;
+  filter: blur(28.5013px);
+  border-radius: 31.1779px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  z-index: 0;
+}
+
+/* ⚪️ Light wave */
+.launchappbtn::after {
+  position: absolute;
+  height: 62.36px;
+  left: -286.96px;
+  right: 253.22px;
+  top: -0.04px;
+
+  background: #0085ff;
+  filter: blur(28.5013px);
+  border-radius: 31.1779px;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  z-index: 1;
+}
