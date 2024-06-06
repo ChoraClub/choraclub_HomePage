@@ -1,9 +1,11 @@
 .headingParent {
-  position: absolute;
+  position: fixed;
   z-index: 1000;
-  width: calc(100% - 44px);
+  width: 95%;
   top: 22px;
-  left: 22px;
+  opacity: 0;
+  /* top: -200px; */
+  left: 2.5%;
   margin: 0 auto;
   background: #ffffff;
   box-shadow: 0px 4px 53.7px rgba(0, 0, 0, 0.11);
@@ -16,25 +18,11 @@
   align-items: center;
   padding: 20px 25px;
 }
-
 .logo {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
-  color: black;
-  font-family: var(--font-poppins);
-  font-weight: 500;
-  font-size: 2rem;
-  line-height: normal;
 }
-
-.logo > svg {
-  height: 35px;
-  width: 35px;
-  margin-right: 5px;
-}
-
 .launchappbtn {
   background: #004dff;
   border-radius: 138px;

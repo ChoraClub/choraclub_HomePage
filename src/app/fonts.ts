@@ -8,7 +8,7 @@ export const inter = Inter({
  
 export const poppins = Poppins({
     variable: '--font-poppins',
-    weight: ['400', '500','700'],
+    weight: ['300','400', '500','700'],
     style: ['normal', 'italic'],
     subsets: ['latin'],
     display: 'swap',

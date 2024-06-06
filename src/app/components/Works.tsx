@@ -1,7 +1,8 @@
-import React from "react";
+"use client";
+import React, { useLayoutEffect, useRef } from "react";
 import styles from "../styles/works.module.css";
-import img from "../../../public/e172.svg"
-import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const work = [
   {
@@ -22,19 +23,59 @@ const work = [
 ];
 
 const Works = () => {
+  const boxRefs = useRef<Array<HTMLDivElement | null>>([]);
+
+  const worksRef = useRef(null)
+  useLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: worksRef.current,
+        start: "150% top",
+        end: "210% top",
+        toggleActions: "play none none reverse",
+        scrub: false,
+      },
+    }).fromTo(worksRef.current, {
+      opacity: 0
+    }, { opacity: 1 })
+  }, [])
+  const handleMouseEnter = (index: number) => {
+    gsap.to(boxRefs.current[index], {
+      boxShadow:
+        "0px 4px 127.3px 0px #004dff, inset 0px 4px 214.8px 0px rgba(35, 57, 255, 0.48)",
+      borderColor: "#004dff",
+      duration: 0,
+    });
+  };
+
+  const handleMouseLeave = (index: number) => {
+    gsap.to(boxRefs.current[index], {
+      boxShadow: "inset 0px 4px 214.8px 0px rgba(19, 32, 151, 0.48)",
+      borderColor: "rgb(34, 33, 33)",
+      duration: 0,
+    });
+  };
   return (
-    <div className={styles.section}>
-        <div className={styles.e172}></div>
-        <div className={styles.e235}></div>
-        <div className={styles.e233}></div>
-        <div className={styles.e234}></div>
-        <div className={styles.e170}></div>
-        <div className={styles.e174}></div>
-        <div className={styles.v152}></div>
+    <div className={`${styles.section} worksParent`} ref={worksRef}>
+      <div className={styles.e172}></div>
+      <div className={styles.e235}></div>
+      <div className={styles.e233}></div>
+      <div className={styles.e234}></div>
+      <div className={styles.e170}></div>
+      <div className={styles.e174}></div>
+      <div className={styles.v152}></div>
       <h5 className={styles.heading}>How Chora Club Works</h5>
       <div className={styles.worksList}>
         {work.map((work, index) => (
-          <div key={index} className={styles.workDiv}>
+          <div
+            key={index}
+            className={styles.workDiv}
+            ref={(el) => (boxRefs.current[index] = el)}
+            onMouseEnter={() => handleMouseEnter(index)}
+            onMouseLeave={() => handleMouseLeave(index)}
+          >
             <h5 className={styles.divHead}>{work.heading}</h5>
             <p className={styles.divPara}>{work.paragraph}</p>
           </div>

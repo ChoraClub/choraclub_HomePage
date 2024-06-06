@@ -1,0 +1,19 @@
+.tagline {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; /* Adjust as needed */
+  overflow: hidden;
+  align-items: center;
+}
+
+.taglineword {
+  opacity: 1;
+}
+
+.headingDot {
+  color: #000; /* Adjust color as needed */
+}
+
+.activetextopacity {
+  opacity: 0; /* This can be adjusted based on your requirements */
+}
