@@ -23,7 +23,6 @@ const Join = () => {
           end: "+=400 top",
           toggleActions: "play none none reverse",
           scrub: false,
-          markers: true,
         },
       })
       .to(joinRef.current, { opacity: 1, duration: 1, zIndex: 100 }, 0)
