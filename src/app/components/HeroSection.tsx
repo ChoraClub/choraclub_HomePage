@@ -34,7 +34,7 @@ const items = [
   },
 ];
 function HeroSection() {
-  const appRef = useRef(null);
+  const appRef = useRef<HTMLDivElement>(null);
   const taglineRef = useRef(null);
   const discoverRef = useRef(null);
   const learnRef = useRef(null);
@@ -47,6 +47,7 @@ function HeroSection() {
   const gridParentRef = useRef(null);
   const boxItemImageRefs = useRef<Array<HTMLDivElement | null>>([]);
   const headerRef = useRef(null);
+  const worksRef = useRef(null);
   useEffect(() => {
     const handleScroll = () => {
       const scrollValue = window.scrollY; // or document.documentElement.scrollTop;
@@ -90,355 +91,375 @@ function HeroSection() {
   }, []);
 
   useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+    let scrollValue: number | undefined;
+    function getScrollValueForSection(sectionHeight: any) {
+      const viewportHeight = window.innerHeight;
+      const scrollValue = sectionHeight;
+      return scrollValue;
+    }
 
-    // // First section timeline
-    // const initialTl = gsap.timeline({
-    //   scrollTrigger: {
-    //     trigger: rectangleRef.current,
-    //     start: "0% top",
-    //     end: "0% bottom",
-    //     markers: true,
-    //     pin: true,
-    //     pinSpacing: true
-    //   },
-    // })
+    if (appRef.current) {
+      scrollValue = getScrollValueForSection(appRef.current.offsetHeight);
+      console.log("Scroll value for section one:", scrollValue);
+    }
+    if (scrollValue !== undefined) {
+      gsap.registerPlugin(ScrollTrigger);
 
-    // First section timeline
-    gsap
-      .timeline({
+      // First section timeline
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: appRef.current,
+            start: "+=10 top",
+            // end: "+=200 top",
+            end: `+=${scrollValue / 6} top`,
+            toggleActions: "play none none reverse",
+            scrub: 1,
+          },
+        })
+        .fromTo(
+          discoverImageRef.current,
+          {
+            opacity: 0,
+            scale: 0,
+          },
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 1,
+          },
+          0
+        )
+        .to(
+          discoverRef.current,
+          {
+            top: "25%",
+            left: "0%",
+            duration: 1,
+            opacity: 1,
+          },
+          0
+        )
+        .to(
+          learnRef.current,
+          {
+            left: "0%",
+            duration: 1,
+            opacity: 0.24,
+          },
+          0
+        )
+        .to(
+          engageRef.current,
+          {
+            top: "55%",
+            left: "0%",
+            duration: 1,
+            opacity: 0.24,
+          },
+          0
+        );
+
+      // Second section timeline
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: appRef.current,
+            start: `+=${scrollValue / 6} top`,
+            end: `+=${2 * scrollValue / 6} top`,
+            toggleActions: "play none none reverse",
+            scrub: 1,
+          },
+        })
+        .to(
+          discoverRef.current,
+          {
+            duration: 1,
+            opacity: 0.24,
+          },
+          0
+        )
+        .to(
+          learnRef.current,
+          {
+            duration: 1,
+            opacity: 1,
+          },
+          0
+        )
+        .fromTo(
+          learnImageRef.current,
+          {
+            opacity: 0,
+            scale: 0,
+          },
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 1,
+          },
+          0
+        )
+        .to(
+          discoverImageRef.current,
+          {
+            opacity: 0,
+            duration: 1,
+            scale: 0,
+          },
+          0
+        )
+        .to(
+          engageImageRef.current,
+          {
+            opacity: 0,
+            duration: 1,
+            scale: 0,
+          },
+          0
+        );
+
+      // Third section timeline
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: appRef.current,
+            start: `+=${2 * scrollValue / 6} top`,
+            end: `+=${3 * scrollValue / 6} top`,
+            toggleActions: "play none none reverse",
+            scrub: 1,
+          },
+        })
+        .to(
+          learnRef.current,
+          {
+            duration: 1,
+            opacity: 0.24,
+          },
+          0
+        )
+        .to(
+          engageRef.current,
+          {
+            duration: 1,
+            opacity: 1,
+          },
+          0
+        )
+        .fromTo(
+          engageImageRef.current,
+          {
+            opacity: 0,
+            scale: 0,
+          },
+          {
+            opacity: 1,
+            duration: 1,
+            scale: 1,
+          },
+          0
+        )
+        .to(
+          learnImageRef.current,
+          {
+            opacity: 0,
+            scale: 0,
+            duration: 1,
+          },
+          0
+        )
+        .to(
+          discoverImageRef.current,
+          {
+            opacity: 0,
+            scale: 0,
+            duration: 1,
+          },
+          0
+        );
+
+      // Fourth section timeline
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: appRef.current,
+            start: `+=${3 * scrollValue / 6} top`,
+            end: `+=${4 * scrollValue / 6} top`,
+            toggleActions: "play none none reverse",
+            scrub: false,
+          },
+        })
+        .to(
+          gridParentRef.current,
+          {
+            bottom: 0,
+            duration: 1,
+          },
+          0
+        )
+        .to(
+          engageImageRef.current,
+          {
+            opacity: 0,
+            scale: 0,
+            duration: 1,
+          },
+          0
+        )
+        .to(
+          discoverImageRef.current,
+          {
+            opacity: 0,
+            scale: 0,
+            duration: 1,
+          },
+          0
+        )
+        .to(
+          learnImageRef.current,
+          {
+            opacity: 0,
+            scale: 0,
+            duration: 1,
+          },
+          0
+        )
+        .to(
+          discoverRef.current,
+          {
+            top: "40%",
+            left: "0%",
+            duration: 1,
+            opacity: 1,
+          },
+          0
+        )
+        .to(
+          learnRef.current,
+          {
+            top: "40%",
+            left: "39%",
+            duration: 1,
+            opacity: 1,
+          },
+          0
+        )
+        .to(
+          engageRef.current,
+          {
+            top: "40%",
+            left: "65%",
+            duration: 1,
+            opacity: 1,
+          },
+          0
+        );
+
+      // const tl = gsap.timeline({
+      //   scrollTrigger: {
+      //     trigger: appRef.current,
+      //     start: "60% top",
+      //     end: "150% top",
+      //     toggleActions: "play none none reverse",
+      //     markers: true,
+      //     scrub: false,
+      //   },
+      // });
+
+      const items = document.querySelectorAll(`.${styles.gridItemWrapper}`);
+
+      const worksParent = document.querySelector(".worksParent");
+      // console.log("items", items);
+      items.forEach((item, index) => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: appRef.current,
+            start: `+=${4 * scrollValue / 6 + index * 50} top`,
+            end: `+=${4 * scrollValue / 6 + 50 + index * 50} top`,
+            toggleActions: "play none none reverse",
+            scrub: true,
+          },
+        });
+        const image = item.querySelector(".gridImage");
+        const prevItem = items[index - 1];
+        const imagePrev = prevItem
+          ? prevItem.querySelector(".gridImage")
+          : null;
+        boxItemRefs.current[index] = item as HTMLDivElement;
+        boxItemImageRefs.current[index] = image as HTMLDivElement;
+
+        tl.to(
+          item,
+
+          { background: "#0500FF", duration: 0.5 },
+          index
+        ).to(image, { scale: 2.3, y: -50, duration: 0.5 }, index);
+
+        if (prevItem && imagePrev) {
+          tl.to(
+            prevItem,
+            {
+              background: "linear-gradient(180deg, #161618 0%, #101a4f 100%)",
+              duration: 0,
+            },
+            index
+          ).to(imagePrev, { scale: 1, y: 0, duration: 0.5 }, index);
+        }
+      });
+      const workRef = document.querySelectorAll(".worksParent");
+      const tl2 = gsap.timeline({
         scrollTrigger: {
           trigger: appRef.current,
-          start: "+=100 top",
-          end: "+=200 top",
-          toggleActions: "play none none reverse",
-          scrub: 1,
-        },
-      })
-      .fromTo(
-        discoverImageRef.current,
-        {
-          opacity: 0,
-          scale: 0,
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 1,
-        },
-        0
-      )
-      .to(
-        discoverRef.current,
-        {
-          top: "25%",
-          left: "0%",
-          duration: 1,
-          opacity: 1,
-        },
-        0
-      )
-      .to(
-        learnRef.current,
-        {
-          left: "0%",
-          duration: 1,
-          opacity: 0.24,
-        },
-        0
-      )
-      .to(
-        engageRef.current,
-        {
-          top: "55%",
-          left: "0%",
-          duration: 1,
-          opacity: 0.24,
-        },
-        0
-      );
-
-    // Second section timeline
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: appRef.current,
-          start: "+=200 top",
-          end: "+=300 top",
-          toggleActions: "play none none reverse",
-          scrub: 1,
-        },
-      })
-      .to(
-        discoverRef.current,
-        {
-          duration: 1,
-          opacity: 0.24,
-        },
-        0
-      )
-      .to(
-        learnRef.current,
-        {
-          duration: 1,
-          opacity: 1,
-        },
-        0
-      )
-      .fromTo(
-        learnImageRef.current,
-        {
-          opacity: 0,
-          scale: 0,
-        },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 1,
-        },
-        0
-      )
-      .to(
-        discoverImageRef.current,
-        {
-          opacity: 0,
-          duration: 1,
-          scale: 0,
-        },
-        0
-      )
-      .to(
-        engageImageRef.current,
-        {
-          opacity: 0,
-          duration: 1,
-          scale: 0,
-        },
-        0
-      );
-
-    // Third section timeline
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: appRef.current,
-          start: "+=300 top",
-          end: "+=400 top",
-          toggleActions: "play none none reverse",
-          scrub: 1,
-        },
-      })
-      .to(
-        learnRef.current,
-        {
-          duration: 1,
-          opacity: 0.24,
-        },
-        0
-      )
-      .to(
-        engageRef.current,
-        {
-          duration: 1,
-          opacity: 1,
-        },
-        0
-      )
-      .fromTo(
-        engageImageRef.current,
-        {
-          opacity: 0,
-          scale: 0,
-        },
-        {
-          opacity: 1,
-          duration: 1,
-          scale: 1,
-        },
-        0
-      )
-      .to(
-        learnImageRef.current,
-        {
-          opacity: 0,
-          scale: 0,
-          duration: 1,
-        },
-        0
-      )
-      .to(
-        discoverImageRef.current,
-        {
-          opacity: 0,
-          scale: 0,
-          duration: 1,
-        },
-        0
-      );
-
-    // Fourth section timeline
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: appRef.current,
-          start: "+=400 top",
-          end: "+=500 top",
+          start: `+=${scrollValue - 100} top`,
+          end: `+=${scrollValue} top`,
           toggleActions: "play none none reverse",
           scrub: false,
         },
-      })
-      .to(
-        gridParentRef.current,
-        {
-          bottom: 0,
-          duration: 1,
-        },
-        0
-      )
-      .to(
-        engageImageRef.current,
-        {
-          opacity: 0,
-          scale: 0,
-          duration: 1,
-        },
-        0
-      )
-      .to(
-        discoverImageRef.current,
-        {
-          opacity: 0,
-          scale: 0,
-          duration: 1,
-        },
-        0
-      )
-      .to(
-        learnImageRef.current,
-        {
-          opacity: 0,
-          scale: 0,
-          duration: 1,
-        },
-        0
-      )
-      .to(
-        discoverRef.current,
-        {
-          top: "40%",
-          left: "0%",
-          duration: 1,
-          opacity: 1,
-        },
-        0
-      )
-      .to(
-        learnRef.current,
-        {
-          top: "40%",
-          left: "39%",
-          duration: 1,
-          opacity: 1,
-        },
-        0
-      )
-      .to(
-        engageRef.current,
-        {
-          top: "40%",
-          left: "65%",
-          duration: 1,
-          opacity: 1,
-        },
-        0
-      );
-
-    // const tl = gsap.timeline({
-    //   scrollTrigger: {
-    //     trigger: appRef.current,
-    //     start: "60% top",
-    //     end: "150% top",
-    //     toggleActions: "play none none reverse",
-    //     markers: true,
-    //     scrub: false,
-    //   },
-    // });
-
-    const items = document.querySelectorAll(`.${styles.gridItemWrapper}`);
-    // console.log("items", items);
-    items.forEach((item, index) => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: appRef.current,
-          start: `+=${500 + index * 50} top`,
-          end: `+=${550 + index * 50} top`,
-          toggleActions: "play none none reverse",
-          scrub: true,
-        },
       });
-      const image = item.querySelector(".gridImage");
-      const prevItem = items[index - 1];
-      const imagePrev = prevItem ? prevItem.querySelector(".gridImage") : null;
-      boxItemRefs.current[index] = item as HTMLDivElement;
-      boxItemImageRefs.current[index] = image as HTMLDivElement;
 
-      tl.to(
-        item,
-
-        { background: "#0500FF", duration: 0.5 },
-        index
-      ).to(image, { scale: 2.3, y: -50, duration: 0.5 }, index);
-
-      if (prevItem && imagePrev) {
-        tl.to(
-          prevItem,
+      tl2
+        .to(
+          [discoverRef.current, learnRef.current, engageRef.current],
           {
-            background: "linear-gradient(180deg, #161618 0%, #101a4f 100%)",
-            duration: 0,
+            top: "10%",
+            opacity: 0,
+            duration: 1,
+            stagger: 0.3,
           },
-          index
-        ).to(imagePrev, { scale: 1, y: 0, duration: 0.5 }, index);
-      }
-    });
-    const workRef = document.querySelectorAll(".worksParent");
-    const tl2 = gsap.timeline({
-      scrollTrigger: {
-        trigger: appRef.current,
-        start: "+=800 top",
-        end: "+=850 top",
-        toggleActions: "play none none reverse",
-        scrub: true,
-      },
-    });
-
-    tl2
-      .to(
-        [discoverRef.current, learnRef.current, engageRef.current],
-        {
-          top: "10%",
-          opacity: 0,
+          0
+        )
+        .to(
+          gridParentRef.current,
+          {
+            bottom: "-50%",
+            opacity: 0,
+            duration: 1,
+          },
+          0
+        )
+        .to(
+          headerRef.current,
+          {
+            y: -50,
+            opacity: 0,
+          },
+          0
+        )
+        .to(
+          appRef.current,
+          {
+            opacity: 0,
+            duration: 1,
+            zIndex: 5,
+            position: "relative"
+          },
+          1
+        ).to(worksParent, {
+          opacity: 1,
           duration: 1,
-        },
-        0
-      )
-      .to(
-        gridParentRef.current,
-        {
-          bottom: "-50%",
-          opacity: 0,
-          duration: 1,
-        },
-        0
-      )
-      .to(
-        appRef.current,
-        {
-          opacity: 0,
-          duration: 1,
-          display: "none",
-        },
-        0
-      );
+          zIndex: 50,
+        }, 1)
+    }
   }, []);
 
   return (

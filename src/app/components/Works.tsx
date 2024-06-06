@@ -24,23 +24,91 @@ const work = [
 
 const Works = () => {
   const boxRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const workHeadingRef = useRef(null);
+  const worksRef = useRef(null);
 
-  const worksRef = useRef(null)
-  useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+  // useLayoutEffect(() => {
+  //   gsap.registerPlugin(ScrollTrigger);
 
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: worksRef.current,
-        start: "150% top",
-        end: "210% top",
-        toggleActions: "play none none reverse",
-        scrub: false,
-      },
-    }).fromTo(worksRef.current, {
-      opacity: 0
-    }, { opacity: 1 })
-  }, [])
+  //   gsap
+  //     .timeline({
+  //       scrollTrigger: {
+  //         trigger: worksRef.current,
+  //         start: "+=800 top",
+  //         end: "+=999 top",
+  //         toggleActions: "play none none reverse",
+  //         scrub: false,
+  //       },
+  //     })
+  //     .to(worksRef.current, { opacity: 1 }, 0)
+  //     .fromTo(
+  //       workHeadingRef.current,
+  //       {
+  //         y: -50,
+  //         opacity: 0,
+  //         duration: 1,
+  //       },
+  //       {
+  //         y: 0,
+  //         opacity: 1,
+  //         duration: 1,
+  //       },
+  //       1
+  //     )
+  //     .fromTo(
+  //       boxRefs.current,
+  //       {
+  //         y: 20,
+  //         opacity: 0,
+  //         duration: 1,
+  //       },
+  //       {
+  //         y: 0,
+  //         opacity: 1,
+  //         duration: 1,
+  //       },
+  //       1
+  //     );
+  //   // gsap
+  //   //   .timeline({
+  //   //     scrollTrigger: {
+  //   //       trigger: worksRef.current,
+  //   //       start: "+=1000 top",
+  //   //       end: "+=1100 top",
+  //   //       toggleActions: "play none none reverse",
+  //   //       scrub: false,
+  //   //     },
+  //   //   })
+  //   //   .fromTo(
+  //   //     workHeadingRef.current,
+  //   //     {
+  //   //       y: 0,
+  //   //       opacity: 1,
+  //   //       duration: 1,
+  //   //     },
+  //   //     {
+  //   //       y: -100,
+  //   //       opacity: 0,
+  //   //       duration: 1,
+  //   //     },
+  //   //     1
+  //   //   )
+  //   //   .fromTo(
+  //   //     boxRefs.current,
+  //   //     {
+  //   //       y: 0,
+  //   //       opacity: 1,
+  //   //       duration: 1,
+  //   //     },
+  //   //     {
+  //   //       y: -100,
+  //   //       opacity: 0,
+  //   //       duration: 1,
+  //   //     },
+  //   //     1
+  //   //   )
+  //   //   .to(worksRef.current, { opacity: 0, duration: 1, zIndex: 0 }, 2);
+  // }, []);
   const handleMouseEnter = (index: number) => {
     gsap.to(boxRefs.current[index], {
       boxShadow:
@@ -66,7 +134,9 @@ const Works = () => {
       <div className={styles.e170}></div>
       <div className={styles.e174}></div>
       <div className={styles.v152}></div>
-      <h5 className={styles.heading}>How Chora Club Works</h5>
+      <h5 className={styles.heading} ref={workHeadingRef}>
+        How Chora Club Works
+      </h5>
       <div className={styles.worksList}>
         {work.map((work, index) => (
           <div
@@ -74,7 +144,7 @@ const Works = () => {
             className={styles.workDiv}
             ref={(el: HTMLDivElement | null) => {
               if (el) {
-                (boxRefs.current[index] = el);
+                boxRefs.current[index] = el;
               }
             }}
             onMouseEnter={() => handleMouseEnter(index)}

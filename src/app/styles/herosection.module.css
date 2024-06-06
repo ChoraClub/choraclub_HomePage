@@ -1,5 +1,5 @@
 .heroSectionParent {
-  height: 850px;
+  height: 250vh;
   width: 100%;
   background-color: black;
   position: relative;
@@ -27,7 +27,7 @@
   background-blend-mode: overlay;
   overflow: hidden;
   position: fixed;
-  z-index: 5;
+  z-index: 50;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;

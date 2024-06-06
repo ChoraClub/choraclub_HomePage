@@ -1,18 +1,21 @@
-.worksParent {
-}
 .section {
   display: flex;
   flex-direction: column;
   position: relative;
   overflow: hidden;
   padding-top: 90px;
-  height: 100vh;
+  min-height: 100vh;
   background: rgb(13, 14, 28);
   background: linear-gradient(
     180deg,
     rgba(13, 14, 28, 1) 0%,
     rgba(16, 25, 63, 1) 95%
   );
+  /* position: fixed;
+  top: 0;
+  z-index: 3; */
+  z-index: 2;
+  opacity: 0;
 }
 
 .e172 {
@@ -101,7 +104,7 @@
 
 .heading {
   color: #2969ff;
-  font-size: 6vw;
+  font-size: 5vw;
   font-weight: 300;
   text-align: center;
   margin-bottom: 100px;
@@ -114,14 +117,14 @@
   align-items: center;
   justify-content: center;
   gap: 30px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   z-index: 100;
   margin: 0 auto;
 }
 
 .workDiv {
   width: max(400px, 29%);
-  height: max(45vh, 350px);
+  height: max(48vh, 420px);
   padding: 52px;
   border-radius: 25px;
   display: flex;
@@ -129,6 +132,7 @@
   gap: 40px;
   position: relative;
   background: rgb(34, 33, 33);
+  filter: blur(94);
   background: linear-gradient(
     180deg,
     rgba(34, 33, 33, 0.2050070028011205) 0%,
@@ -140,12 +144,12 @@
 }
 
 .divHead {
-  font-size: 20px;
+  font-size: max(1vw, 1.2rem);
   font-weight: 500;
   font-family: var(--font-poppins);
 }
 .divPara {
-  font-size: 20px;
+  font-size: max(1vw, 1rem);
   font-weight: 300;
   font-family: var(--font-poppins);
 }
