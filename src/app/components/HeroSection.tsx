@@ -455,8 +455,6 @@ function HeroSection() {
             opacity: 0,
             duration: 0,
             zIndex: 5,
-            position: "relative",
-            height: 0
           },
           0
         )
