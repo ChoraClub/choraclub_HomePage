@@ -115,6 +115,7 @@ function HeroSection() {
             end: `+=${scrollValue / 6} top`,
             toggleActions: "play none none reverse",
             scrub: 1,
+
           },
         })
         .fromTo(
@@ -410,7 +411,7 @@ function HeroSection() {
       const tl2 = gsap.timeline({
         scrollTrigger: {
           trigger: appRef.current,
-          start: `+=${scrollValue + 100} top`,
+          start: `+=${scrollValue + 1} top`,
           end: `+=${scrollValue + 50} top`,
           toggleActions: "play none none reverse",
           scrub: false,
@@ -457,7 +458,9 @@ function HeroSection() {
             zIndex: 5,
           },
           0
-        )
+        ).to(rectangleRef.current, {
+          display: "none"
+        })
     }
   }, []);
 
