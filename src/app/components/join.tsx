@@ -1,8 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useLayoutEffect, useRef } from "react";
-import img1 from "../../../public/Image (49) 3.svg";
-import img2 from "../../../public/Image (50) 3.svg";
+
 import styles from "../styles/join.module.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -15,10 +14,7 @@ const Join = () => {
   const joinContent2 = useRef(null);
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    // Function to enable body scrolling
-    const enableBodyScroll = () => {
-      document.body.style.overflow = "auto";
-    };
+
     gsap
       .timeline({
         scrollTrigger: {
@@ -34,7 +30,7 @@ const Join = () => {
       .fromTo(
         [joinImg1.current, joinImg2.current],
         {
-          y: -50,
+          y: -100,
           opacity: 0,
           duration: 1,
         },
@@ -59,23 +55,6 @@ const Join = () => {
         },
         1
       ).to;
-
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: joinRef.current,
-          start: "+=1200 top",
-          end: "+=1300 top",
-          toggleActions: "play none none reverse",
-          scrub: false,
-        },
-        onComplete: enableBodyScroll,
-      })
-      .to(
-        joinRef.current,
-        { opacity: 0, duration: 1, position: "relative" },
-        0
-      );
   }, []);
   return (
     <div className={styles.joinpage} ref={joinRef}>
@@ -86,8 +65,10 @@ const Join = () => {
       <div className={styles.main}>
         <div className={styles.section}>
           <Image
-            src={img1}
-            alt=""
+            src={"/assets/img/joinImg1.svg"}
+            alt="join image 2"
+            width={500}
+            height={500}
             className={styles.image}
             ref={joinImg1}
           ></Image>
@@ -102,8 +83,10 @@ const Join = () => {
         </div>
         <div className={styles.section}>
           <Image
-            src={img2}
-            alt=""
+            src={"/assets/img/joinImg2.svg"}
+            alt="join image 2"
+            width={500}
+            height={500}
             className={styles.image}
             ref={joinImg2}
           ></Image>

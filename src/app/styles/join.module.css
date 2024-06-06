@@ -73,7 +73,6 @@
   flex-wrap: wrap;
   /* gap: 100px; */
   z-index: 1000;
-  border: 1px solid red;
 }
 
 .section {
@@ -84,7 +83,6 @@
   /* width: 500px; */
   padding: 20px;
   z-index: 100;
-  border: 1px solid red;
 }
 .joinContent {
   display: flex;
@@ -96,8 +94,10 @@
   z-index: 100;
 }
 .image {
-  height: 250px;
-  width: auto;
+  width: 20rem;
+  height: auto;
+  aspect-ratio: 1/1;
+  /* width: auto; */
   transition: transform 4s;
 }
 

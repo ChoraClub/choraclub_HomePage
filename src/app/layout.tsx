@@ -5,7 +5,7 @@ import { inter } from "./fonts";
 import SmoothScrolling from "./components/SmoothScrolling";
 
 export const metadata: Metadata = {
-  title: "Chora Club | Homepage",
+  title: "Chora Club",
   description: "",
 };
 
