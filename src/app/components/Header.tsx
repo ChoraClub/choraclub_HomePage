@@ -6,6 +6,10 @@ interface HeaderProps {
   headerRef: RefObject<HTMLDivElement>;
 }
 function Header({ headerRef }: HeaderProps) {
+
+  const handleLaunchAppClick = () => {
+    window.open("https://app.chora.club/")
+  }
   return (
     <div className={styles.headingParent} ref={headerRef}>
       <div className={styles.logo}>
@@ -17,7 +21,7 @@ function Header({ headerRef }: HeaderProps) {
           alt="Chora Club Logo"
         />
       </div>
-      <div className={styles.launchappbtn}>Launch App</div>
+      <div className={styles.launchappbtn} onClick={handleLaunchAppClick}>Launch App</div>
     </div>
   );
 }

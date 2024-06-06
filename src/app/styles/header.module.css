@@ -33,41 +33,6 @@
   font-size: 1rem;
   line-height: 27px;
 }
-
-/* 🟣 Dark-wave */
-.launchappbtn::before {
-  position: absolute;
-  height: 62.36px;
-  left: -728.51px;
-  right: 694.77px;
-  top: -0.04px;
-
-  background: #0500ff;
-  filter: blur(28.5013px);
-  border-radius: 31.1779px;
-
-  /* Inside auto layout */
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-  z-index: 0;
-}
-
-/* ⚪️ Light wave */
-.launchappbtn::after {
-  position: absolute;
-  height: 62.36px;
-  left: -286.96px;
-  right: 253.22px;
-  top: -0.04px;
-
-  background: #0085ff;
-  filter: blur(28.5013px);
-  border-radius: 31.1779px;
-
-  /* Inside auto layout */
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-  z-index: 1;
+.launchappbtn:hover {
+  cursor: pointer;
 }
