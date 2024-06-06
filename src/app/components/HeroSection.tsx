@@ -108,8 +108,8 @@ function HeroSection() {
       .timeline({
         scrollTrigger: {
           trigger: appRef.current,
-          start: "10% top",
-          end: "20% top",
+          start: "+=100 top",
+          end: "+=200 top",
           toggleActions: "play none none reverse",
           scrub: false,
         },
@@ -120,12 +120,12 @@ function HeroSection() {
         {
           opacity: 0,
           scale: 0,
-          duration: 0.5,
+          duration: 0,
         },
         {
           opacity: 1,
           scale: 1,
-          duration: 0.5,
+          duration: 1,
         },
         0
       )
@@ -135,7 +135,7 @@ function HeroSection() {
         {
           top: "25%",
           left: "0%",
-          duration: 0.5,
+          duration: 1,
           opacity: 1,
         },
         0
@@ -144,7 +144,7 @@ function HeroSection() {
         learnRef.current,
         {
           left: "0%",
-          duration: 0.5,
+          duration: 1,
           opacity: 0.24,
         },
         0
@@ -154,7 +154,7 @@ function HeroSection() {
         {
           top: "55%",
           left: "0%",
-          duration: 0.5,
+          duration: 1,
           opacity: 0.24,
         },
         0
@@ -165,8 +165,8 @@ function HeroSection() {
       .timeline({
         scrollTrigger: {
           trigger: appRef.current,
-          start: "25% top",
-          end: "35% top",
+          start: "+=200 top",
+          end: "+=300 top",
           toggleActions: "play none none reverse",
           scrub: false,
         },
@@ -175,7 +175,7 @@ function HeroSection() {
       .to(
         discoverRef.current,
         {
-          duration: 0.5,
+          duration: 1,
           opacity: 0.24,
         },
         0
@@ -183,7 +183,7 @@ function HeroSection() {
       .to(
         learnRef.current,
         {
-          duration: 0.5,
+          duration: 1,
           opacity: 1,
         },
         0
@@ -198,7 +198,7 @@ function HeroSection() {
         },
         {
           opacity: 1,
-          duration: 0.5,
+          duration: 1,
           scale: 1,
         },
         0
@@ -207,14 +207,14 @@ function HeroSection() {
         discoverImageRef.current,
         {
           opacity: 0,
-          duration: 0.1,
+          duration: 1,
           scale: 0,
         },
         0
       )
       .to(engageImageRef.current, {
         opacity: 0,
-        duration: 0.1,
+        duration: 1,
         scale: 0,
       });
 
@@ -223,8 +223,8 @@ function HeroSection() {
       .timeline({
         scrollTrigger: {
           trigger: appRef.current,
-          start: "40% top",
-          end: "50% top",
+          start: "+=300 top",
+          end: "+=400 top",
           toggleActions: "play none none reverse",
           scrub: false,
         },
@@ -232,7 +232,7 @@ function HeroSection() {
       .to(
         learnRef.current,
         {
-          duration: 0.5,
+          duration: 1,
           opacity: 0.24,
         },
         0
@@ -240,7 +240,7 @@ function HeroSection() {
       .to(
         engageRef.current,
         {
-          duration: 0.5,
+          duration: 1,
           opacity: 1,
         },
         0
@@ -250,6 +250,7 @@ function HeroSection() {
         {
           opacity: 0,
           scale: 0,
+          duration: 1,
         },
         0
       )
@@ -257,7 +258,7 @@ function HeroSection() {
         engageImageRef.current,
         {
           opacity: 1,
-          duration: 0.1,
+          duration: 1,
           scale: 1,
         },
         0
@@ -267,6 +268,7 @@ function HeroSection() {
         {
           opacity: 0,
           scale: 0,
+          duration: 1,
         },
         0
       );
@@ -275,8 +277,8 @@ function HeroSection() {
       .timeline({
         scrollTrigger: {
           trigger: appRef.current,
-          start: "50% top",
-          end: "60% top",
+          start: "+=400 top",
+          end: "+=500 top",
           toggleActions: "play none none reverse",
           scrub: false,
         },
@@ -361,10 +363,10 @@ function HeroSection() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: appRef.current,
-          start: `${60 + index * 1}% top`,
-          end: `${60 + index + index * 1}% top`,
+          start: `+=${500 + index * 50} top`,
+          end: `+=${550 + index * 50} top`,
           toggleActions: "play none none reverse",
-          scrub: false,
+          scrub: true,
         },
       });
       const image = item.querySelector(".gridImage");
@@ -385,7 +387,7 @@ function HeroSection() {
           prevItem,
           {
             background: "linear-gradient(180deg, #161618 0%, #101a4f 100%)",
-            duration: 0.5,
+            duration: 0,
           },
           index
         ).to(imagePrev, { scale: 1, y: 0, duration: 0.5 }, index);
@@ -395,8 +397,8 @@ function HeroSection() {
     const tl2 = gsap.timeline({
       scrollTrigger: {
         trigger: appRef.current,
-        start: "100% top",
-        end: "150% top",
+        start: "+=800 top",
+        end: "+=810 top",
         toggleActions: "play none none reverse",
         scrub: false,
       },
@@ -425,6 +427,7 @@ function HeroSection() {
         appRef.current,
         {
           opacity: 0,
+          display: "none",
         },
         0
       )
