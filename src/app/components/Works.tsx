@@ -72,7 +72,11 @@ const Works = () => {
           <div
             key={index}
             className={styles.workDiv}
-            ref={(el) => (boxRefs.current[index] = el)}
+            ref={(el: HTMLDivElement | null) => {
+              if (el) {
+                (boxRefs.current[index] = el);
+              }
+            }}
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={() => handleMouseLeave(index)}
           >

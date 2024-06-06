@@ -43,9 +43,9 @@ function HeroSection() {
   const learnImageRef = useRef(null);
   const engageImageRef = useRef(null);
   const rectangleRef = useRef(null);
-  const boxItemRefs = useRef([]);
+  const boxItemRefs = useRef<Array<HTMLDivElement | null>>([]);
   const gridParentRef = useRef(null);
-  const boxItemImageRefs = useRef([]);
+  const boxItemImageRefs = useRef<Array<HTMLDivElement | null>>([]);
   const headerRef = useRef(null);
   useEffect(() => {
     const handleScroll = () => {
@@ -370,8 +370,8 @@ function HeroSection() {
       const image = item.querySelector(".gridImage");
       const prevItem = items[index - 1];
       const imagePrev = prevItem ? prevItem.querySelector(".gridImage") : null;
-      boxItemRefs.current[index] = item;
-      boxItemImageRefs.current[index] = image;
+      boxItemRefs.current[index] = item as HTMLDivElement;
+      boxItemImageRefs.current[index] = image as HTMLDivElement;
 
       tl.to(
         item,
@@ -494,7 +494,11 @@ function HeroSection() {
             <div
               key={index}
               className={styles.gridItemWrapper}
-              ref={(el) => (boxItemRefs.current[index] = el)}
+              ref={(el: HTMLDivElement | null) => {
+                if (el) {
+                  boxItemRefs.current[index] = el;
+                }
+              }}
             >
               <div className={styles.gridItem}>
                 <Image
@@ -503,7 +507,11 @@ function HeroSection() {
                   width={250}
                   height={250}
                   className="gridImage"
-                  ref={(el) => (boxItemImageRefs.current[index] = el)}
+                  ref={(el: HTMLDivElement | null) => {
+                    if (el) {
+                      boxItemImageRefs.current[index] = el;
+                    }
+                  }}
                 />
                 <div className={styles.text}>{item.text}</div>
               </div>
