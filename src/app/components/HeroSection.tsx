@@ -104,6 +104,7 @@ function HeroSection() {
     //   },
     // })
 
+    // First section timeline
     gsap
       .timeline({
         scrollTrigger: {
@@ -111,16 +112,14 @@ function HeroSection() {
           start: "+=100 top",
           end: "+=200 top",
           toggleActions: "play none none reverse",
-          scrub: false,
+          scrub: 1,
         },
       })
-
       .fromTo(
         discoverImageRef.current,
         {
           opacity: 0,
           scale: 0,
-          duration: 0,
         },
         {
           opacity: 1,
@@ -129,7 +128,6 @@ function HeroSection() {
         },
         0
       )
-
       .to(
         discoverRef.current,
         {
@@ -168,10 +166,9 @@ function HeroSection() {
           start: "+=200 top",
           end: "+=300 top",
           toggleActions: "play none none reverse",
-          scrub: false,
+          scrub: 1,
         },
       })
-
       .to(
         discoverRef.current,
         {
@@ -188,18 +185,16 @@ function HeroSection() {
         },
         0
       )
-
       .fromTo(
         learnImageRef.current,
         {
           opacity: 0,
-          duration: 0,
           scale: 0,
         },
         {
           opacity: 1,
-          duration: 1,
           scale: 1,
+          duration: 1,
         },
         0
       )
@@ -212,11 +207,15 @@ function HeroSection() {
         },
         0
       )
-      .to(engageImageRef.current, {
-        opacity: 0,
-        duration: 1,
-        scale: 0,
-      });
+      .to(
+        engageImageRef.current,
+        {
+          opacity: 0,
+          duration: 1,
+          scale: 0,
+        },
+        0
+      );
 
     // Third section timeline
     gsap
@@ -226,7 +225,7 @@ function HeroSection() {
           start: "+=300 top",
           end: "+=400 top",
           toggleActions: "play none none reverse",
-          scrub: false,
+          scrub: 1,
         },
       })
       .to(
@@ -245,21 +244,25 @@ function HeroSection() {
         },
         0
       )
+      .fromTo(
+        engageImageRef.current,
+        {
+          opacity: 0,
+          scale: 0,
+        },
+        {
+          opacity: 1,
+          duration: 1,
+          scale: 1,
+        },
+        0
+      )
       .to(
         learnImageRef.current,
         {
           opacity: 0,
           scale: 0,
           duration: 1,
-        },
-        0
-      )
-      .to(
-        engageImageRef.current,
-        {
-          opacity: 1,
-          duration: 1,
-          scale: 1,
         },
         0
       )
@@ -273,6 +276,7 @@ function HeroSection() {
         0
       );
 
+    // Fourth section timeline
     gsap
       .timeline({
         scrollTrigger: {
@@ -292,10 +296,20 @@ function HeroSection() {
         0
       )
       .to(
+        engageImageRef.current,
+        {
+          opacity: 0,
+          scale: 0,
+          duration: 1,
+        },
+        0
+      )
+      .to(
         discoverImageRef.current,
         {
           opacity: 0,
           scale: 0,
+          duration: 1,
         },
         0
       )
@@ -304,14 +318,7 @@ function HeroSection() {
         {
           opacity: 0,
           scale: 0,
-        },
-        0
-      )
-      .to(
-        engageImageRef.current,
-        {
-          opacity: 0,
-          scale: 0,
+          duration: 1,
         },
         0
       )
@@ -398,9 +405,9 @@ function HeroSection() {
       scrollTrigger: {
         trigger: appRef.current,
         start: "+=800 top",
-        end: "+=810 top",
+        end: "+=850 top",
         toggleActions: "play none none reverse",
-        scrub: false,
+        scrub: true,
       },
     });
 
@@ -410,7 +417,7 @@ function HeroSection() {
         {
           top: "10%",
           opacity: 0,
-          duration: 0.5,
+          duration: 1,
         },
         0
       )
@@ -419,7 +426,7 @@ function HeroSection() {
         {
           bottom: "-50%",
           opacity: 0,
-          duration: 0.5,
+          duration: 1,
         },
         0
       )
@@ -427,11 +434,11 @@ function HeroSection() {
         appRef.current,
         {
           opacity: 0,
+          duration: 1,
           display: "none",
         },
         0
-      )
-      .fromTo(workRef, { opacity: 0 }, { opacity: 1, duration: 0.5 }, 0);
+      );
   }, []);
 
   return (
