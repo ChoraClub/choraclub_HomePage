@@ -8,6 +8,8 @@
   align-items: center;
   gap: 40px;
   color: white;
+  position: relative;
+  z-index: 200;
 }
 
 .copyrighttext {

@@ -14,7 +14,7 @@
   /* position: fixed;
   top: 0;
   z-index: 3; */
-  z-index: 2;
+  z-index: 200;
   opacity: 0;
 }
 

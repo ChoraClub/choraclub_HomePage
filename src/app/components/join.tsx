@@ -12,6 +12,10 @@ const Join = () => {
   const joinImg2 = useRef(null);
   const joinContent1 = useRef(null);
   const joinContent2 = useRef(null);
+
+  const handlejoinClick = () => {
+    window.open("https://app.chora.club/")
+  }
   useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -77,7 +81,7 @@ const Join = () => {
               Chora Club is your gateway to tailored learning, community
               engagement, and endless opportunities
             </p>
-            <button className={styles.button}>Start Your Journey</button>
+            <button className={styles.button} onClick={handlejoinClick}>Start Your Journey</button>
           </div>
         </div>
         <div className={styles.section}>
@@ -97,7 +101,7 @@ const Join = () => {
               Your expertise matters in guiding the next wave of web3
               enthusiasts
             </p>
-            <button className={styles.button}>Join as a Delegate</button>
+            <button className={styles.button} onClick={handlejoinClick}>Join as a Delegate</button>
           </div>
         </div>
       </div>

@@ -14,7 +14,7 @@
   top: 0;
   width: 100vw;
   min-height: 100vh;
-  z-index: 2;
+  z-index: 200;
 }
 
 .bottom2 {
@@ -130,6 +130,7 @@
 }
 
 .button:hover {
+  cursor: pointer;
   background: rgb(5, 0, 255);
   background: linear-gradient(
     90deg,

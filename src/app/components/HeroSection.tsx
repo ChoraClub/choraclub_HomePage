@@ -375,7 +375,7 @@ function HeroSection() {
           scrollTrigger: {
             trigger: appRef.current,
             start: `+=${4 * scrollValue / 6 + index * 50} top`,
-            end: `+=${4 * scrollValue / 6 + 50 + index * 50} top`,
+            end: `+=${5 * scrollValue / 6 + 50 + index * 50} top`,
             toggleActions: "play none none reverse",
             scrub: true,
           },
@@ -410,8 +410,8 @@ function HeroSection() {
       const tl2 = gsap.timeline({
         scrollTrigger: {
           trigger: appRef.current,
-          start: `+=${scrollValue - 100} top`,
-          end: `+=${scrollValue} top`,
+          start: `+=${scrollValue + 100} top`,
+          end: `+=${scrollValue + 50} top`,
           toggleActions: "play none none reverse",
           scrub: false,
         },
@@ -444,21 +444,22 @@ function HeroSection() {
             opacity: 0,
           },
           0
-        )
+        ).to(worksParent, {
+          opacity: 1,
+          duration: 0,
+          zIndex: 50,
+        }, 0)
         .to(
           appRef.current,
           {
             opacity: 0,
-            duration: 1,
+            duration: 0,
             zIndex: 5,
-            position: "relative"
+            position: "relative",
+            height: 0
           },
-          1
-        ).to(worksParent, {
-          opacity: 1,
-          duration: 1,
-          zIndex: 50,
-        }, 1)
+          0
+        )
     }
   }, []);
 
