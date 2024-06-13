@@ -1,60 +1,34 @@
-@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Tenor+Sans&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Tenali+Ramakrishna&display=swap");
 
-.container {
-  position: relative;
-  width: 100%;
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 100px auto;
-}
-
-.text {
-  width: 100%;
-  position: relative;
-  display: flex;
-  /* font-size: 12vw; */
-  font-weight: bold;
-  z-index: 1;
-  height: 300px;
-  margin: 0 auto;
-}
-
-.letterContainer {
-  width: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  /* justify-content: space-between; */
-  justify-content: center;
-}
-
-.letter {
-  position: relative;
-  z-index: 1;
-  opacity: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.mosaicGrid {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 200px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  z-index: 0;
-}
-
-.mosaicCell {
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
-}
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: max-content;
+    margin: 70px auto 0;
+  }
+  
+  .text {
+    display: flex;
+    width: 100%;
+    gap: 0;
+    max-width: 100%;
+  }
+  
+  .letterContainer {
+    display: flex;
+    flex: 1; 
+    justify-content: center;
+  }
+  
+  .letter {
+    width: 9vw;
+    aspect-ratio: 1;
+    margin: -10px -50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: opacity 0.2s ease-in-out; /* Optional: for smooth transition */
+    opacity: 1;
+  }
+  
