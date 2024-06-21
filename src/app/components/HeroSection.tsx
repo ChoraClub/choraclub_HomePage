@@ -100,7 +100,7 @@ function HeroSection() {
           anticipatePin: 1,
           // once: true,
           pinType: "fixed",
-          markers: true,
+          // markers: true,
           snap: {
             snapTo: 1 / 11, // snap to the closest label in the timeline
             duration: { min: 0.2, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
