@@ -119,19 +119,19 @@
   position: absolute;
   top: 40%;
   left: 0%;
-  opacity: 1;
+  opacity: 0;
 }
 .learnWord {
   position: absolute;
   top: 40%;
   left: 39%;
-  opacity: 1;
+  opacity: 0;
 }
 .engageWord {
   position: absolute;
   top: 40%;
   left: 65%;
-  opacity: 1;
+  opacity: 0;
 }
 .taglineVertical {
   width: 40%;
@@ -154,7 +154,6 @@
 .taglineword {
   /* position: relative; */
   text-shadow: 0px 5px 90px rgba(0, 0, 0, 0.5);
-  opacity: 0;
 }
 
 .headingDot {

@@ -37,9 +37,9 @@ const Works = () => {
           scrollTrigger: {
             trigger: worksRef.current,
             start: "top bottom",
-            end: "+=30% top",
+            end: "top top",
             toggleActions: "play none none reverse",
-            // scrub: true,
+            scrub: true,
             // markers: true,
           },
         })

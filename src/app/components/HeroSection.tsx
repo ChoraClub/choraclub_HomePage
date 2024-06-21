@@ -73,11 +73,14 @@ function HeroSection() {
         [discoverRef.current, learnRef.current, engageRef.current],
         {
           y: 100,
+          opacity: 0
         },
         {
           y: 0,
           duration: 1,
-          ease: 'power2.out'
+          opacity: 1,
+          ease: 'power2.out',
+          stagger: 0.2
         }
       );
     });
@@ -89,8 +92,8 @@ function HeroSection() {
       .timeline({
         scrollTrigger: {
           trigger: rectangleRef.current,
-          start: "top top",
-          end: "300% top",
+          start: "+=1% top",
+          end: "400% top",
           // end: `+=${scrollValue / 6} top`,
           toggleActions: "play none none reverse",
           scrub: true,
@@ -102,7 +105,7 @@ function HeroSection() {
           pinType: "fixed",
           // markers: true,
           snap: {
-            snapTo: 1 / 11, // snap to the closest label in the timeline
+            snapTo: 1 / 12, // snap to the closest label in the timeline
             duration: { min: 0.2, max: 3 }, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
             delay: 0.2, // wait 0.2 seconds from the last scroll event before doing the snapping
             ease: 'power2.inOut' // the ease of the snap animation ("power3" by default)
@@ -127,9 +130,9 @@ function HeroSection() {
         },
         0
       )
-      .fromTo(
+      .to(
         discoverRef.current,
-        { opacity: 1 },
+        // { opacity: 1 },
         {
           top: "25%",
           left: "0%",
@@ -138,9 +141,9 @@ function HeroSection() {
         },
         0
       )
-      .fromTo(
+      .to(
         learnRef.current,
-        { opacity: 1 },
+        // { opacity: 1 },
         {
           left: "0%",
           duration: 1,
@@ -148,9 +151,9 @@ function HeroSection() {
         },
         0
       )
-      .fromTo(
+      .to(
         engageRef.current,
-        { opacity: 1 },
+        // { opacity: 1 },
         {
           top: "55%",
           left: "0%",
@@ -385,6 +388,10 @@ function HeroSection() {
       const imagePrev = prevItem
         ? prevItem.querySelector(".gridImage")
         : null;
+
+      const lastItem = items[items.length - 1];
+      const lastImage = lastItem ? lastItem.querySelector(".gridImage")
+        : null;
       boxItemRefs.current[index] = item as HTMLDivElement;
       boxItemImageRefs.current[index] = image as HTMLDivElement;
       let count = index + 4;
@@ -408,7 +415,18 @@ function HeroSection() {
           count
         ).to(imagePrev, { scale: 1, y: 0, duration: 0.5 }, count);
       }
-    });
+
+      tln.to(
+        lastItem,
+        {
+          background: "linear-gradient(180deg, #161618 0%, #101a4f 100%)",
+          duration: 0,
+        },
+        10
+      ).to(lastImage, { scale: 1, y: 0, duration: 0.5 }, 10);
+    })
+
+
     // const workRef = document.querySelectorAll(".worksParent");
     // const tl2 = gsap.timeline({
     //   scrollTrigger: {
