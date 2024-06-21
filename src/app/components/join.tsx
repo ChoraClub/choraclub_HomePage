@@ -16,49 +16,49 @@ const Join = () => {
   const handlejoinClick = () => {
     window.open("https://app.chora.club/")
   }
-  useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+  // useLayoutEffect(() => {
+  //   gsap.registerPlugin(ScrollTrigger);
 
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: joinRef.current,
-          start: "top center",
-          end: "+=400 top",
-          toggleActions: "play none none reverse",
-          scrub: false,
-        },
-      })
-      .to(joinRef.current, { opacity: 1, duration: 1, zIndex: 100 }, 0)
-      .fromTo(
-        [joinImg1.current, joinImg2.current],
-        {
-          y: -100,
-          opacity: 0,
-          duration: 1,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-        },
-        1
-      )
-      .fromTo(
-        [joinContent1.current, joinContent2.current],
-        {
-          y: 100,
-          opacity: 0,
-          duration: 1,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-        },
-        1
-      ).to;
-  }, []);
+  //   gsap
+  //     .timeline({
+  //       scrollTrigger: {
+  //         trigger: joinRef.current,
+  //         start: "top center",
+  //         end: "+=400 top",
+  //         toggleActions: "play none none reverse",
+  //         scrub: false,
+  //       },
+  //     })
+  //     .to(joinRef.current, { opacity: 1, duration: 1, zIndex: 100 }, 0)
+  //     .fromTo(
+  //       [joinImg1.current, joinImg2.current],
+  //       {
+  //         y: -100,
+  //         opacity: 0,
+  //         duration: 1,
+  //       },
+  //       {
+  //         y: 0,
+  //         opacity: 1,
+  //         duration: 1,
+  //       },
+  //       1
+  //     )
+  //     .fromTo(
+  //       [joinContent1.current, joinContent2.current],
+  //       {
+  //         y: 100,
+  //         opacity: 0,
+  //         duration: 1,
+  //       },
+  //       {
+  //         y: 0,
+  //         opacity: 1,
+  //         duration: 1,
+  //       },
+  //       1
+  //     ).to;
+  // }, []);
   return (
     <div className={styles.joinpage} ref={joinRef}>
       <div className={styles.bottom2}></div>
