@@ -5,6 +5,7 @@ import React, { useLayoutEffect, useRef } from "react";
 import styles from "../styles/join.module.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
 const Join = () => {
   const joinRef = useRef(null);
@@ -16,49 +17,61 @@ const Join = () => {
   const handlejoinClick = () => {
     window.open("https://app.chora.club/")
   }
-  // useLayoutEffect(() => {
-  //   gsap.registerPlugin(ScrollTrigger);
 
-  //   gsap
-  //     .timeline({
-  //       scrollTrigger: {
-  //         trigger: joinRef.current,
-  //         start: "top center",
-  //         end: "+=400 top",
-  //         toggleActions: "play none none reverse",
-  //         scrub: false,
-  //       },
-  //     })
-  //     .to(joinRef.current, { opacity: 1, duration: 1, zIndex: 100 }, 0)
-  //     .fromTo(
-  //       [joinImg1.current, joinImg2.current],
-  //       {
-  //         y: -100,
-  //         opacity: 0,
-  //         duration: 1,
-  //       },
-  //       {
-  //         y: 0,
-  //         opacity: 1,
-  //         duration: 1,
-  //       },
-  //       1
-  //     )
-  //     .fromTo(
-  //       [joinContent1.current, joinContent2.current],
-  //       {
-  //         y: 100,
-  //         opacity: 0,
-  //         duration: 1,
-  //       },
-  //       {
-  //         y: 0,
-  //         opacity: 1,
-  //         duration: 1,
-  //       },
-  //       1
-  //     ).to;
-  // }, []);
+  useGSAP(() => {
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    // First section timeline
+    const tln = gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: joinRef.current,
+          start: "top bottom",
+          end: "+=200 top",
+          // end: `+=${scrollValue / 6} top`,
+          toggleActions: "play none none reverse",
+          scrub: false,
+
+          // markers: true,
+          // endTrigger: rectangleRef.current,
+
+        }, onComplete: () => {
+          // Trigger the second timeline on completion of the first
+
+        }
+      })
+      .to(joinRef.current, { opacity: 1, duration: 1, zIndex: 100 }, 0)
+      .fromTo(
+        [joinImg1.current, joinImg2.current],
+        {
+          y: -100,
+          opacity: 0,
+
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.5,
+        },
+        1
+      )
+      .fromTo(
+        [joinContent1.current, joinContent2.current],
+        {
+          y: 200,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.5,
+        },
+        1
+      );
+
+  }, { scope: joinRef });
+
   return (
     <div className={styles.joinpage} ref={joinRef}>
       <div className={styles.bottom2}></div>

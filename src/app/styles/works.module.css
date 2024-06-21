@@ -109,6 +109,7 @@
   text-align: center;
   margin-bottom: 100px;
   z-index: 100;
+  opacity: 0;
 }
 
 .worksList {
@@ -141,6 +142,7 @@
   box-shadow: inset 0px 4px 214.8px 0px rgba(19, 32, 151, 0.48);
   border: 1px solid transparent;
   transition: all 0.5s ease;
+  opacity: 0;
 }
 
 .divHead {

@@ -90,7 +90,7 @@ function HeroSection() {
         scrollTrigger: {
           trigger: rectangleRef.current,
           start: "top top",
-          end: "200% top",
+          end: "300% top",
           // end: `+=${scrollValue / 6} top`,
           toggleActions: "play none none reverse",
           scrub: true,
@@ -420,7 +420,7 @@ function HeroSection() {
     //   },
     // });
 
-    // tl2
+    // tln
     //   .to(
     //     [discoverRef.current, learnRef.current, engageRef.current],
     //     {
@@ -429,7 +429,7 @@ function HeroSection() {
     //       duration: 1,
     //       stagger: 0.3,
     //     },
-    //     0
+    //     5
     //   )
     //   .to(
     //     gridParentRef.current,
@@ -438,7 +438,7 @@ function HeroSection() {
     //       opacity: 0,
     //       duration: 1,
     //     },
-    //     0
+    //     5
     //   )
     //   .to(
     //     headerRef.current,
@@ -446,24 +446,9 @@ function HeroSection() {
     //       y: -50,
     //       opacity: 0,
     //     },
-    //     0
-    //   ).to(worksParent, {
-    //     opacity: 1,
-    //     duration: 0,
-    //     zIndex: 50,
-    //   }, 0)
-    //   .to(
-    //     appRef.current,
-    //     {
-    //       opacity: 0,
-    //       duration: 0,
-    //       zIndex: 5,
-    //     },
-    //     0
-    //   ).to(rectangleRef.current, {
-    //     display: "none"
-    //   })
-    // }
+    //     5
+    //   );
+
   }, { scope: rectangleRef });
 
   return (
