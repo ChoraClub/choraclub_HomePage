@@ -1,245 +1,103 @@
-"use client"; // Necessary for Next.js 13 and above
+"use client"; 
 
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import styles from '../styles/MosaicAnimation.module.css';
 
+import C1 from '../../../public/svgs/c1.svg';
+import C2 from '../../../public/svgs/c2.svg';
+import C3 from '../../../public/svgs/C.svg';
+import C4 from '../../../public/svgs/c4.svg';
 
-type AnimationSequenceStep = {
-  cells?: number[];
-  duration: number;
-  textChange?: boolean;
-  font?: string;
-  fontSize?: string;
+import H1 from '../../../public/svgs/h1.svg';
+import H2 from '../../../public/svgs/h2.svg';
+import H3 from '../../../public/svgs/H.svg';
+import H4 from '../../../public/svgs/h4.svg';
+
+import O1 from '../../../public/svgs/o1.svg';
+import O2 from '../../../public/svgs/o2.svg';
+import O3 from '../../../public/svgs/O.svg';
+import O4 from '../../../public/svgs/o4.svg';
+
+import R1 from '../../../public/svgs/r1.svg';
+import R2 from '../../../public/svgs/r2.svg';
+import R3 from '../../../public/svgs/R.svg';
+import R4 from '../../../public/svgs/r4.svg';
+
+import A1 from '../../../public/svgs/a1.svg';
+import A2 from '../../../public/svgs/a2.svg';
+import A3 from '../../../public/svgs/A.svg';
+import A4 from '../../../public/svgs/a4.svg';
+
+import L1 from '../../../public/svgs/l1.svg';
+import L2 from '../../../public/svgs/l2.svg';
+import L3 from '../../../public/svgs/L.svg';
+import L4 from '../../../public/svgs/l4.svg';
+
+import U1 from '../../../public/svgs/u1.svg';
+import U2 from '../../../public/svgs/u2.svg';
+import U3 from '../../../public/svgs/U.svg';
+import U4 from '../../../public/svgs/u4.svg';
+
+import B1 from '../../../public/svgs/b1.svg';
+import B2 from '../../../public/svgs/b2.svg';
+import B3 from '../../../public/svgs/B.svg';
+import B4 from '../../../public/svgs/b4.svg';
+
+type CharType2 = 'C' | 'H' | 'O' | 'R' | 'A' | 'L' | 'U' | 'B';
+
+const svgPaths: Record<CharType, { src: string }[]> = {
+  C: [C1, C2, C3, C4],
+  H: [H1, H2, H3, H4],
+  O: [O1, O2, O3, O4],
+  R: [R1, R2, R3, R4],
+  A: [A1, A2, A3, A4],
+  L: [L1, L2, L3, L4],
+  U: [U1, U2, U3, U4],
+  B: [B1, B2, B3, B4],
 };
 
-type AnimationSequences = {
-  [key: string]: AnimationSequenceStep[];
+const animationSequences = {
+  C: [0, 1, 2, 3],
+  H: [0, 1, 2, 3],
+  O: [0, 1, 2, 3],
+  R: [0, 1, 2, 3],
+  A: [0, 1, 2, 3],
+  L: [0, 1, 2, 3],
+  U: [0, 1, 2, 3],
+  B: [0, 1, 2, 3],
 };
-
-const animationSequences: AnimationSequences = {
-  C: [
-    { cells: [2, 4, 8], duration: 0.5 },
-    { cells: [2, 8], duration: 0.5 },
-    { cells: [2, 4], duration: 0.5 },
-    { cells: [4, 8], duration: 0.5 },
-    { cells: [4], duration: 0.5 },
-    { textChange: true, duration: 0.5, font: 'Chakra Petch', fontSize: '10vw' },
-    { cells: [4], duration: 0.5 },
-    { cells: [4, 8], duration: 0.5 },
-    { cells: [2, 4], duration: 0.5 },
-    { cells: [2, 8], duration: 0.5 },
-    { cells: [2, 4, 8], duration: 0.5 },
-    { textChange: true, duration: 0.5, font: 'Tenor Sans', fontSize: '10vw' },
-    { cells: [2, 4, 8], duration: 0.5 },
-    { cells: [2, 8], duration: 0.5 },
-    { cells: [2, 4], duration: 0.5 },
-    { cells: [4, 8], duration: 0.5 },
-    { cells: [4], duration: 0.5 },
-    { textChange: true, duration: 0.5, font: 'Tenali Ramakrishna', fontSize: '15vw' },
-  ],
-  H: [
-    { cells: [5], duration: 0.5 },
-    { cells: [1, 5], duration: 0.5 },
-    { cells: [1, 5, 9], duration: 0.5 },
-    { cells: [1, 5, 7, 9], duration: 0.5 },
-    { cells: [1, 3, 5, 7, 9], duration: 0.5 },
-    { textChange: true, duration: 0.5, font: 'Chakra Petch', fontSize: '10vw' },
-    { cells: [1, 3, 5, 7, 9], duration: 0.5 },
-    { cells: [1, 5, 7, 9], duration: 0.5 },
-    { cells: [1, 5, 9], duration: 0.5 },
-    { cells: [1, 5], duration: 0.5 },
-    { cells: [5], duration: 0.5 },
-    { textChange: true, duration: 0.5, font: 'Tenor Sans', fontSize: '10vw' },
-    { cells: [5], duration: 0.5 },
-    { cells: [1, 5], duration: 0.5 },
-    { cells: [1, 5, 9], duration: 0.5 },
-    { cells: [1, 5, 7, 9], duration: 0.5 },
-    { cells: [1, 3, 5, 7, 9], duration: 0.5 },
-    { textChange: true, duration: 0.5, font: 'Tenali Ramakrishna', fontSize: '15vw' },
-  ],
-  O: [
-    { cells: [2, 4, 6, 8], duration: 0.5 },
-    { cells: [2, 4, 6], duration: 0.5 },
-    { cells: [2, 8], duration: 0.5 },
-    { cells: [2, 4], duration: 0.5 },
-    { cells: [2], duration: 0.5 },
-    { textChange: true, duration: 0.5, font: 'Chakra Petch', fontSize: '10vw' },
-    { cells: [2], duration: 0.5 },
-    { cells: [2, 4], duration: 0.5 },
-    { cells: [2, 8], duration: 0.5 },
-    { cells: [2, 4, 6], duration: 0.5 },
-    { cells: [2, 4, 6, 8], duration: 0.5 },
-    { textChange: true, duration: 0.5, font: 'Tenor Sans', fontSize: '10vw' },
-    { cells: [2, 4, 6, 8], duration: 0.5 },
-    { cells: [2, 4, 6], duration: 0.5 },
-    { cells: [2, 8], duration: 0.5 },
-    { cells: [2, 4], duration: 0.5 },
-    { cells: [2], duration: 0.5 },
-    { textChange: true, duration: 0.5, font: 'Tenali Ramakrishna', fontSize: '15vw' },
-  ],
-  R: [
-    { cells: [3, 5], duration: 0.5 },
-    { cells: [1, 3], duration: 0.5 },
-    { cells: [1, 3, 5], duration: 0.5 },
-    { cells: [1, 5, 9], duration: 0.5 },
-    { cells: [1, 3, 5, 9], duration: 0.5 },
-    { textChange: true, duration: 0.5, font: 'Chakra Petch', fontSize: '10vw' },
-    { cells: [1, 3, 5, 9], duration: 0.5 },
-    { cells: [1, 5, 9], duration: 0.45 },
-    { cells: [1, 3, 5], duration: 0.5 },
-    { cells: [1, 3], duration: 0.5 },
-    { cells: [2, 4, 8], duration: 0.5 },
-    { textChange: true, duration: 0.5, font: 'Tenor Sans', fontSize: '10vw' },
-    { cells: [2, 4, 8], duration: 0.5 },
-    { cells: [2, 8], duration: 0.55 },
-    { cells: [2, 4], duration: 0.5 },
-    { cells: [4, 8], duration: 0.5 },
-    { cells: [4], duration: 0.5 },
-    { textChange: true, duration: 0.5, font: 'Tenali Ramakrishna', fontSize: '15vw' },
-  ],
-  // A: [
-  //   { cells: [2, 4, 6, 7, 9], duration: 0.5},
-  //   { cells: [2, 4, 6, 9], duration: 0.5 },
-  //   { cells: [2, 4, 9], duration: 0.5 },
-  //   { cells: [4, 8], duration: 0.5 },
-  //   { cells: [7], duration: 0.5 },
-  //   { textChange: true, duration: 0.5, font: 'Chakra Petch' },
-  //   { cells: [7], duration: 0.5 },
-  //   { cells: [2, 9], duration: 0.5 },
-  //   { cells: [2, 4, 9], duration: 0.5 },
-  //   { cells: [2, 4, 6, 9], duration: 0.5 },
-  //   { cells: [2, 4, 6, 7, 9], duration: 0.5 },
-  //   { textChange: true, duration: 0.5, font: 'Tenor Sans' },
-  //   { cells: [2, 4, 6, 7, 9], duration: 0.5 },
-  //   { cells: [2, 4, 6, 9], duration: 0.5 },
-  //   { cells: [2, 4, 9], duration: 0.5 },
-  //   { cells: [2, 9], duration: 0.5 },
-  //   { cells: [7], duration: 0.5 },
-  //   { textChange: true, duration: 0.5, font: 'Tenali Ramakrishna' },
-  // ],
-  A: [
-    { cells: [2, 4, 6, 8], duration: 0.5 },
-    { cells: [2, 4, 6], duration: 0.5 },
-    { cells: [2, 8], duration: 0.5 },
-    { cells: [2, 4], duration: 0.5 },
-    { cells: [2], duration: 0.45 },
-    { textChange: true, duration: 0.5, font: 'Chakra Petch', fontSize: '10vw' },
-    { cells: [2], duration: 0.55 },
-    { cells: [2, 4], duration: 0.5 },
-    { cells: [2, 8], duration: 0.5 },
-    { cells: [2, 4, 6], duration: 0.5 },
-    { cells: [2, 4, 6, 8], duration: 0.5 },
-    { textChange: true, duration: 0.5, font: 'Tenor Sans', fontSize: '10vw' },
-    { cells: [2, 4, 6, 8], duration: 0.5 },
-    { cells: [2, 4, 6], duration: 0.5 },
-    { cells: [2, 8], duration: 0.5 },
-    { cells: [2, 4], duration: 0.5 },
-    { cells: [2], duration: 0.5 },
-    { textChange: true, duration: 0.5, font: 'Tenali Ramakrishna', fontSize: '15vw' },
-  ],
-  L: [
-    { cells: [3, 5], duration: 0.5 },
-    { cells: [1, 3], duration: 0.5 },
-    { cells: [1, 3, 5], duration: 0.5 },
-    { cells: [1, 5, 9], duration: 0.5 },
-    { cells: [1, 3, 5, 9], duration: 0.5 },
-    { textChange: true, duration: 0.5, font: 'Chakra Petch', fontSize: '10vw' },
-    { cells: [1, 3, 5, 9], duration: 0.5 },
-    { cells: [1, 5, 9], duration: 0.45 },
-    { cells: [1, 3, 5], duration: 0.5 },
-    { cells: [1, 3], duration: 0.5 },
-    { cells: [2, 4, 8], duration: 0.5 },
-    { textChange: true, duration: 0.5, font: 'Tenor Sans', fontSize: '10vw' },
-    { cells: [2, 4, 8], duration: 0.5 },
-    { cells: [2, 8], duration: 0.55 },
-    { cells: [2, 4], duration: 0.5 },
-    { cells: [4, 8], duration: 0.5 },
-    { cells: [4], duration: 0.5 },
-    { textChange: true, duration: 0.5, font: 'Tenali Ramakrishna', fontSize: '15vw' },
-  ],
-  U: [
-    { cells: [5], duration: 0.5 },
-    { cells: [1, 5], duration: 0.5 },
-    { cells: [1, 5, 9], duration: 0.5 },
-    { cells: [1, 5, 7, 9], duration: 0.45 },
-    { cells: [1, 3, 5, 7, 9], duration: 0.5 },
-    { textChange: true, duration: 0.5, font: 'Chakra Petch', fontSize: '10vw' },
-    { cells: [1, 3, 5, 7, 9], duration: 0.5 },
-    { cells: [1, 5, 7, 9], duration: 0.5 },
-    { cells: [1, 5, 9], duration: 0.5 },
-    { cells: [1, 5], duration: 0.5 },
-    { cells: [5], duration: 0.5 },
-    { textChange: true, duration: 0.5, font: 'Tenor Sans', fontSize: '10vw' },
-    { cells: [5], duration: 0.5 },
-    { cells: [1, 5], duration: 0.5 },
-    { cells: [1, 5, 9], duration: 0.5 },
-    { cells: [1, 5, 7, 9], duration: 0.55 },
-    { cells: [1, 3, 5, 7, 9], duration: 0.5 },
-    { textChange: true, duration: 0.5, font: 'Tenali Ramakrishna', fontSize: '15vw' },
-  ],
-  B: [
-    { cells: [2, 4, 6, 8], duration: 0.5 },
-    { cells: [2, 4, 6], duration: 0.5 },
-    { cells: [2, 8], duration: 0.55 },
-    { cells: [2, 4], duration: 0.5 },
-    { cells: [2], duration: 0.5 },
-    { textChange: true, duration: 0.5, font: 'Chakra Petch', fontSize: '10vw' },
-    { cells: [2], duration: 0.5 },
-    { cells: [2, 4], duration: 0.5 },
-    { cells: [2, 8], duration: 0.5 },
-    { cells: [2, 4, 6], duration: 0.45 },
-    { cells: [2, 4, 6, 8], duration: 0.5 },
-    { textChange: true, duration: 0.5, font: 'Tenor Sans', fontSize: '10vw' },
-    { cells: [2, 4, 6, 8], duration: 0.5 },
-    { cells: [2, 4, 6], duration: 0.5 },
-    { cells: [2, 8], duration: 0.5 },
-    { cells: [2, 4], duration: 0.5 },
-    { cells: [2], duration: 0.5 },
-    { textChange: true, duration: 0.5, font: 'Tenali Ramakrishna', fontSize: '15vw'  },
-  ],
-};
+type CharType = keyof typeof animationSequences;
 
 const MosaicAnimation: React.FC = () => {
-  const lettersRef = useRef<(HTMLSpanElement | null)[]>([]);
-  const mosaicRefs = useRef<Record<number, (HTMLDivElement | null)[]>>({});
+  const lettersRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     lettersRef.current.forEach((letterRef, index) => {
       if (!letterRef) return;
 
-      const char = letterRef.innerText;
-      const mosaicCells = mosaicRefs.current[index];
-      const sequence = animationSequences[char];
+      const char = letterRef.dataset.char as CharType;
+      if (!char || !animationSequences[char]) return;
 
-      if (!sequence) return;
+      const sequence = animationSequences[char];
+      const svgs = svgPaths[char];
 
       const timeline = gsap.timeline({ repeat: -1, repeatDelay: 0 });
 
-      sequence.forEach(step => {
-        if (step.textChange && letterRef) {
-          timeline.to(letterRef, {
-            opacity: 0,
-            duration: 0,
-            fontFamily: step.font,
-            fontSize: step.fontSize, // Apply font size changes
-            onComplete: () => {
-              if (letterRef && step.font && step.fontSize) {
-                letterRef.style.fontFamily = step.font;
-                letterRef.style.fontSize = step.fontSize;
-              }
+      sequence.forEach(stepIndex => {
+        timeline.to(letterRef, {
+          duration: 0.1,
+          opacity: 0,
+          onComplete: () => {
+            if (letterRef) {
+              letterRef.style.backgroundImage = `url(${svgs[stepIndex].src})`;
             }
-          });
-          timeline.to(letterRef, { opacity: 1, duration: step.duration });
-        } else if (step.cells && mosaicCells) {
-          timeline
-            .to(letterRef, { opacity: 0, duration: 0 }, "-=0")
-            .to(step.cells.map(cell => mosaicCells[cell]), { backgroundColor: '#fff', duration: step.duration }, "-=0")
-            .to(step.cells.map(cell => mosaicCells[cell]), { backgroundColor: 'transparent', duration: 0 }, "-=0");
-        }
+          }
+        });
+        timeline.to(letterRef, { opacity: 1, duration: 0.5 }, '-=0.1' );
       });
+      timeline.delay(index * 0.3 + 0.2); // stagger animation start for each letter
 
-      timeline.to(letterRef, { opacity: 1, duration: 0.5 }, "-=0");
     });
   }, []);
 
@@ -248,28 +106,14 @@ const MosaicAnimation: React.FC = () => {
       <div className={styles.text}>
         {[...'CHORACLUB'].map((char, index) => (
           <div key={index} className={styles.letterContainer}>
-            <span
+            <div
+              data-char={char}
               ref={el => {
                 lettersRef.current[index] = el;
               }}
               className={styles.letter}
-            >
-              {char}
-            </span>
-            <div className={styles.mosaicGrid}>
-              {Array.from({ length: 9 }).map((_, cellIndex) => (
-                <div
-                  key={cellIndex}
-                  ref={el => {
-                    if (!mosaicRefs.current[index]) {
-                      mosaicRefs.current[index] = [];
-                    }
-                    mosaicRefs.current[index][cellIndex] = el;
-                  }}
-                  className={styles.mosaicCell}
-                />
-              ))}
-            </div>
+              style={{ backgroundImage: `url(${svgPaths[char as CharType2][0].src})` }}
+            />
           </div>
         ))}
       </div>
@@ -278,4 +122,3 @@ const MosaicAnimation: React.FC = () => {
 };
 
 export default MosaicAnimation;
-
