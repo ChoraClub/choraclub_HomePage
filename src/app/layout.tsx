@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { inter } from "./fonts";
 import SmoothScrolling from "./components/SmoothScrolling";
@@ -43,6 +43,7 @@ export default function RootLayout({
         />
         {/* {children} */}
         <SmoothScrolling>{children}</SmoothScrolling>
+        <Analytics />
       </body>
     </html>
   );
