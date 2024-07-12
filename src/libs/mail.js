@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+// import nodemailer from "nodemailer";
 import * as handlebars from "handlebars";
 import { newslettertemplate } from "./template/newslettertemplate";
 
@@ -39,7 +40,7 @@ export async function sendMail({ to, name, subject, body }) {
 
   try {
     const sendResult = await transport.sendMail({
-      from: `${name} ${SMTP_EMAIL}`,
+      from: `${name} <${SMTP_EMAIL}>`,
       to,
       subject,
       html: body,
