@@ -2,6 +2,7 @@ const nodemailer = require("nodemailer");
 // import nodemailer from "nodemailer";
 import * as handlebars from "handlebars";
 import { newslettertemplate } from "./template/newslettertemplate";
+import { subscribeMailTemplate } from "./template/SubscribeMailTemplate"
 
 export async function sendMail({ to, name, subject, body }) {
   const { SMTP_EMAIL, SMTP_PASSWORD } = process.env;
@@ -17,11 +18,10 @@ export async function sendMail({ to, name, subject, body }) {
   const transport = nodemailer.createTransport({
     host: "smtpout.secureserver.net",
     secure: true,
-    secureConnection: false,
     tls: {
       ciphers: "SSLv3",
     },
-    requireTLS: true,
+    ignoreTLS: true,
     port: 465,
     debug: true,
     auth: {
@@ -29,6 +29,15 @@ export async function sendMail({ to, name, subject, body }) {
       pass: SMTP_PASSWORD,
     },
   });
+  // const transport = nodemailer.createTransport({
+  //   host: "smtp.gmail.com",
+  //   port: 587,
+  //   secure: false,
+  //   auth: {
+  //     user: process.env.SMTP_EMAIL,
+  //     pass: process.env.SMTP_PASSWORD,
+  //   },
+  // });
 
   try {
     const testResult = await transport.verify();

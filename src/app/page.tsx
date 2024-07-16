@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
       },
     ],
     image: {
-      src: framePreview,
+      src: `${BASE_URL}/subscribeEmail.png`,
     },
     postUrl: `${BASE_URL}/api/frame/show-input`,
   });

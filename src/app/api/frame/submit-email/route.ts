@@ -24,7 +24,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse | any> {
           },
         ],
         image: {
-          src: `${BASE_URL}/api/frame/og?${searchParams}`,
+          src: `${BASE_URL}/invalidEmail.png`,
         },
         input: {
           text: "Your Email",
@@ -62,7 +62,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse | any> {
       return new NextResponse(
         getFrameHtmlResponse({
           image: {
-            src: `${BASE_URL}/api/frame/og?${searchParams}`,
+            src: `${BASE_URL}/subscribedSuccessful.png`,
           },
         })
       );
@@ -74,7 +74,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse | any> {
       return new NextResponse(
         getFrameHtmlResponse({
           image: {
-            src: `${BASE_URL}/api/frame/og?${searchParams}`,
+            src: `${BASE_URL}/alreadySubscribed.png`,
           },
         })
       );

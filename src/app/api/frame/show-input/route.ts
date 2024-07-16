@@ -18,7 +18,7 @@ async function getResponse(req: NextRequest): Promise<NextResponse> {
         },
       ],
       image: {
-        src: defaultPreviewImageURL,
+        src: `${BASE_URL}/subscribeEmail.png`,
       },
       input: {
         text: "Your Email",
