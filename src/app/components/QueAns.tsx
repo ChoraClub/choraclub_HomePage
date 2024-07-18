@@ -27,7 +27,7 @@ const questions = [
     "answer": "If you are passionate about Web3 and want to share your knowledge, becoming a Delegate is easy. Click on the &quot;Become a Delegate&quot;	 link, follow the application process, and start making a positive Impact in the Web3 community."
   },
   {
-    "question": "What awaits me as a Delegate on Chora Club?What is the largest ocean on Earth?",
+    "question": "What awaits me as a Delegate on Chora Club? What is the largest ocean on Earth?",
     "answer": "Becoming a Delegate at Chora Club opens doors to exciting possibilities. Gain on-chain recognition for your educational contributions, host Delegate Office Hours, and connect with a diverse community of users. Your expertise is not only valued but also actively contributes to the expansion of the Web3 ecosystem."
   },
   {
