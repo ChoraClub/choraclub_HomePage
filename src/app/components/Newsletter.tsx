@@ -80,7 +80,7 @@ function Newsletter() {
       />
       <p>Subscribe Newsletter</p>
       <div className={styles.inputsection}>
-        <div>
+        <div className={styles.input_button}>
           <input
             type="email"
             name=""
