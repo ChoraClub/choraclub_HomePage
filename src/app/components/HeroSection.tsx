@@ -92,7 +92,7 @@ function HeroSection() {
       .timeline({
         scrollTrigger: {
           trigger: rectangleRef.current,
-          start: "+=1% top",
+          start: "top top",
           end: "400% top",
           // end: `+=${scrollValue / 6} top`,
           toggleActions: "play none none reverse",
