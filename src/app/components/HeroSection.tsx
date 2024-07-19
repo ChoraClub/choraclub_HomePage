@@ -101,7 +101,7 @@ function HeroSection() {
           scrollTrigger: {
             trigger: rectangleRef.current,
             start: "top top",
-            end: `${small ? '+=350%' : "+=600%"}`,
+            end: `${small ? '+=550%' : "+=600%"}`,
             // end: `+=${scrollValue / 6} top`,
             toggleActions: "play none none reverse",
             scrub: 1,
@@ -118,7 +118,7 @@ function HeroSection() {
                 const stepSize = 1 / steps;
                 return Math.round(value / stepSize) * stepSize;
               }, // snap to the closest label in the timeline
-              duration: 0.1, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+              duration: 0.2, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
 
               delay: 0.1, // wait 0.2 seconds from the last scroll event before doing the snapping
               ease: 'power1.inOut' // the ease of the snap animation ("power3" by default)
@@ -145,7 +145,7 @@ function HeroSection() {
             {
               opacity: 1,
               scale: 1,
-              duration: 0.1,
+              duration: 0.5,
             },
             0
           )
@@ -153,7 +153,7 @@ function HeroSection() {
             discoverRef.current,
 
             {
-              duration: 0.1,
+              duration: 0.5,
               opacity: 1,
 
             },
@@ -163,7 +163,7 @@ function HeroSection() {
             learnRef.current,
 
             {
-              duration: 0.1,
+              duration: 0.5,
               opacity: 0.24,
             },
             0
@@ -171,7 +171,7 @@ function HeroSection() {
           .to(
             engageRef.current,
             {
-              duration: 0.1,
+              duration: 0.5,
               opacity: 0.24,
             },
             0
@@ -181,7 +181,7 @@ function HeroSection() {
           .to(
             discoverRef.current,
             {
-              duration: 0.1,
+              duration: 0.5,
               opacity: 0.24,
             },
             1
@@ -189,7 +189,7 @@ function HeroSection() {
           .to(
             learnRef.current,
             {
-              duration: 0.1,
+              duration: 0.5,
               opacity: 1,
             },
             1
@@ -203,7 +203,7 @@ function HeroSection() {
             {
               opacity: 1,
               scale: 1,
-              duration: 0.1,
+              duration: 0.5,
             },
             1
           )
@@ -211,7 +211,7 @@ function HeroSection() {
             discoverImageRef.current,
             {
               opacity: 0,
-              duration: 0.1,
+              duration: 0.5,
               scale: 0,
             },
             1
@@ -220,7 +220,7 @@ function HeroSection() {
             engageImageRef.current,
             {
               opacity: 0,
-              duration: 0.1,
+              duration: 0.5,
               scale: 0,
             },
             1
@@ -230,7 +230,7 @@ function HeroSection() {
           .to(
             learnRef.current,
             {
-              duration: 0.1,
+              duration: 0.5,
               opacity: 0.24,
             },
             2
@@ -238,7 +238,7 @@ function HeroSection() {
           .to(
             engageRef.current,
             {
-              duration: 0.1,
+              duration: 0.5,
               opacity: 1,
             },
             2
@@ -251,7 +251,7 @@ function HeroSection() {
             },
             {
               opacity: 1,
-              duration: 0.1,
+              duration: 0.5,
               scale: 1,
             },
             2
@@ -261,7 +261,7 @@ function HeroSection() {
             {
               opacity: 0,
               scale: 0,
-              duration: 0.1,
+              duration: 0.5,
             },
             2
           )
@@ -270,7 +270,7 @@ function HeroSection() {
             {
               opacity: 0,
               scale: 0,
-              duration: 0.1,
+              duration: 0.5,
             },
             2
           )
@@ -291,7 +291,7 @@ function HeroSection() {
             {
               opacity: 0,
               scale: 0,
-              duration: 0.1,
+              duration: 0.5,
             },
             3
           )
@@ -300,7 +300,7 @@ function HeroSection() {
             {
               opacity: 0,
               scale: 0,
-              duration: 0.1,
+              duration: 0.5,
             },
             3
           )
@@ -309,7 +309,7 @@ function HeroSection() {
             {
               opacity: 0,
               scale: 0,
-              duration: 0.1,
+              duration: 0.5,
             },
             3
           )
@@ -317,7 +317,7 @@ function HeroSection() {
             discoverRef.current,
             {
 
-              duration: 0.1,
+              duration: 0.5,
               opacity: 1,
             },
             3
@@ -326,7 +326,7 @@ function HeroSection() {
             learnRef.current,
             {
 
-              duration: 0.1,
+              duration: 0.5,
               opacity: 1,
             },
             3
@@ -335,7 +335,7 @@ function HeroSection() {
             engageRef.current,
             {
 
-              duration: 0.1,
+              duration: 0.5,
               opacity: 1,
             },
             3
@@ -396,7 +396,7 @@ function HeroSection() {
             //   count
             // )
             .fromTo(text, { opacity: 0, duration: 0.5 }, { opacity: 1, duration: 0.5 }, count)
-            .fromTo(image, { scale: 1, y: 0, opacity: 0, duration: 0.5 }, { scale: 2, y: -50, opacity: 1, duration: 0.5 }, count);
+            .fromTo(image, { scale: 1, y: 0, opacity: 0, duration: 0.5 }, { scale: 1.5, y: -50, opacity: 1, duration: 0.5 }, count);
 
           if (prevItem && imagePrev && prevText) {
             tln
