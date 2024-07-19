@@ -6,6 +6,7 @@ import styles from "../styles/join.module.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { useMediaQuery } from "@uidotdev/usehooks";
 
 const Join = () => {
   const joinRef = useRef(null);
@@ -13,7 +14,9 @@ const Join = () => {
   const joinImg2 = useRef(null);
   const joinContent1 = useRef(null);
   const joinContent2 = useRef(null);
-
+  const isMediumDevice = useMediaQuery(
+    "only screen and (max-width : 992px)"
+  );
   const handlejoinClick = () => {
     window.open("https://app.chora.club/")
   }
@@ -28,7 +31,7 @@ const Join = () => {
         scrollTrigger: {
           trigger: joinRef.current,
           start: "top bottom",
-          end: "+=200 top",
+          end: `${isMediumDevice ? '+=50 top' : "+=200 top"}`,
           // end: `+=${scrollValue / 6} top`,
           toggleActions: "play none none reverse",
           scrub: false,
@@ -36,12 +39,9 @@ const Join = () => {
           // markers: true,
           // endTrigger: rectangleRef.current,
 
-        }, onComplete: () => {
-          // Trigger the second timeline on completion of the first
-
         }
       })
-      .to(joinRef.current, { opacity: 1, duration: 1, zIndex: 1 }, 0)
+      .to(joinRef.current, { opacity: 1, duration: 0.5, zIndex: 1 }, 0)
       .fromTo(
         [joinImg1.current, joinImg2.current],
         {

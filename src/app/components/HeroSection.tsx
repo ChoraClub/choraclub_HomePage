@@ -489,7 +489,7 @@ function HeroSection() {
             anticipatePin: 1,
             // once: true,
             pinType: "fixed",
-            markers: true,
+            // markers: true,
             snap: {
               snapTo: (value) => {
                 const steps = 12; // Total number of main steps
