@@ -2,7 +2,7 @@ import React from "react";
 import Works from "./components/Works";
 import Join from "./components/join";
 import QueAns from "./components/QueAns";
-import HeroSection from "./components/HeroSection";
+// import HeroSection from "./components/HeroSection";
 import { poppins } from "./fonts";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -14,6 +14,7 @@ import {
   defaultPreviewImageURL,
   framePreviewImageURL,
 } from "@/config/constants";
+import dynamic from "next/dynamic";
 
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -65,16 +66,18 @@ export async function generateMetadata(): Promise<Metadata> {
     },
   };
 }
+const DynamicHeroSection = dynamic(() => import('./components/HeroSection'), { ssr: false });
+const DynamicJoinSection = dynamic(() => import('./components/join'), { ssr: false });
 
 const page = () => {
 
   return (
     <div className={poppins.className}>
 
-      <HeroSection />
+      <DynamicHeroSection />
 
       <Works />
-      <Join />
+      <DynamicJoinSection />
       <QueAns />
     </div>
   );
