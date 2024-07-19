@@ -1,43 +1,41 @@
 const nodemailer = require("nodemailer");
 // import nodemailer from "nodemailer";
 import * as handlebars from "handlebars";
-import { newslettertemplate } from "./template/newslettertemplate";
-import { subscribeMailTemplate } from "./template/SubscribeMailTemplate"
+import { subscribeNewsletterTemplate } from "./template/SubscribeMailTemplate"
+import { BASE_URL } from "@/config/constants";
 
 export async function sendMail({ to, name, subject, body }) {
-  const { SMTP_EMAIL, SMTP_PASSWORD } = process.env;
-
-  // console.log("SMTP_EMAIL", SMTP_EMAIL);
-  // console.log("SMTP_PASSWORD", SMTP_PASSWORD);
+  const { SMTP_EMAIL, SMTP_PASSWORD, DKIM_PRIVATE_KEY } = process.env;
 
   console.log("to", to);
   console.log("name", name);
-  // console.log("subject", subject);
-  // console.log("body", body);
 
-  const transport = nodemailer.createTransport({
-    host: "smtpout.secureserver.net",
-    secure: true,
-    tls: {
-      ciphers: "SSLv3",
-    },
-    ignoreTLS: true,
-    port: 465,
-    debug: true,
-    auth: {
-      user: SMTP_EMAIL,
-      pass: SMTP_PASSWORD,
-    },
-  });
-  // const transport = nodemailer.createTransport({
-  //   host: "smtp.gmail.com",
-  //   port: 587,
-  //   secure: false,
-  //   auth: {
-  //     user: process.env.SMTP_EMAIL,
-  //     pass: process.env.SMTP_PASSWORD,
-  //   },
-  // });
+  let transport;
+  try {
+    transport = nodemailer.createTransport({
+      host: "smtpout.secureserver.net",
+      secure: true,
+      secureConnection: false,
+      tls: {
+        ciphers: "SSLv3",
+      },
+      requireTLS: true,
+      // ignoreTLS: true,
+      port: 465,
+      debug: true,
+      auth: {
+        user: SMTP_EMAIL,
+        pass: SMTP_PASSWORD,
+      },
+      dkim: {
+        domainName: "dev@chora.club",
+        keySelector: "google._domainkey",
+        privateKey: DKIM_PRIVATE_KEY
+      }
+    });
+  } catch (error) {
+    console.log("error in creating transport", error)
+  }
 
   try {
     const testResult = await transport.verify();
@@ -53,9 +51,16 @@ export async function sendMail({ to, name, subject, body }) {
       to,
       subject,
       html: body,
-      headers: {
-        "Newsletter-template": "",
-      },
+      // headers: {
+      //   "X-Entity-Ref-ID": "newsletter123",
+      //   "List-Unsubscribe": `<${BASE_URL}/api/unsubscribe/${to}> <mailto:dev@chora.club?subject=unsubscribe>`,
+      // },
+      // list: {
+      //   unsubscribe: {
+      //     url: `${BASE_URL}/api/unsubscribe/${to}`,
+      //     comment: "Unsubscribe from this newsletter"
+      //   }
+      // }
     });
 
     console.log("sendResult", sendResult);
@@ -65,7 +70,7 @@ export async function sendMail({ to, name, subject, body }) {
 }
 
 export function compileNewsletterTemplate() {
-  const template = handlebars.compile(newslettertemplate);
+  const template = handlebars.compile(subscribeNewsletterTemplate);
   const htmlBody = template();
   return htmlBody;
 }
