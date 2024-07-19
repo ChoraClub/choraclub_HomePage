@@ -7,7 +7,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "./Header";
 import { useGSAP } from "@gsap/react";
-import { useMediaQuery } from "@uidotdev/usehooks";
+import { useClientMediaQuery } from "@/hooks/useClientMediaQuery";
 
 const items = [
   {
@@ -53,9 +53,8 @@ function HeroSection() {
   const boxItemImageRefs = useRef<Array<HTMLDivElement | null>>([]);
   const headerRef = useRef(null);
   const worksRef = useRef(null);
-  const isMediumDevice = useMediaQuery(
-    "only screen and (max-width : 992px)"
-  );
+  const isMediumDevice = useClientMediaQuery("only screen and (max-width : 992px)");
+
   useGSAP(() => {
     gsap.context(() => {
       // use scoped selectors

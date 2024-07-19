@@ -6,7 +6,8 @@ import styles from "../styles/join.module.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { useMediaQuery } from "@uidotdev/usehooks";
+
+import { useClientMediaQuery } from "@/hooks/useClientMediaQuery";
 
 const Join = () => {
   const joinRef = useRef(null);
@@ -14,9 +15,7 @@ const Join = () => {
   const joinImg2 = useRef(null);
   const joinContent1 = useRef(null);
   const joinContent2 = useRef(null);
-  const isMediumDevice = useMediaQuery(
-    "only screen and (max-width : 992px)"
-  );
+  const isMediumDevice = useClientMediaQuery("only screen and (max-width : 992px)");
   const handlejoinClick = () => {
     window.open("https://app.chora.club/")
   }
