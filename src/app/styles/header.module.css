@@ -36,3 +36,18 @@
 .launchappbtn:hover {
   cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+  .headingParent {
+    padding: 10px 15px;
+  }
+  .logo img {
+    width: 140px;
+    height: auto;
+  }
+  .launchappbtn {
+    font-size: 0.86rem;
+    line-height: normal;
+    padding: 10px 25px;
+  }
+}

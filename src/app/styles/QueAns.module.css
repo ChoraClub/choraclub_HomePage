@@ -10,6 +10,7 @@
   overflow: hidden;
   position: relative;
 }
+
 .bottom2 {
   background: rgb(38, 104, 255);
   background: radial-gradient(
@@ -81,7 +82,7 @@
   margin: 100px auto;
   gap: 20px;
   position: relative;
-  z-index: 120;
+  z-index: 1;
 }
 
 .item {
@@ -118,8 +119,11 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  font-size: min(1vw, 1rem);
+  /* font-size: min(1vw, 1rem); */
+  font-size: 15px;
   z-index: 140;
+  text-wrap: wrap;
+  text-align: justify;
 }
 
 .answer {
@@ -158,4 +162,54 @@
 .item:hover .arrow {
   transform: rotate(180deg);
   transition: transform 1s ease-out;
+}
+
+@media screen and (max-width: 768px) {
+  .main {
+    padding-bottom: 40px;
+  }
+
+  .list {
+    margin: 100px auto 20px;
+    width: 90%;
+  }
+
+  .group {
+    width: 85%;
+    font-size: 12px;
+  }
+
+  .arrow {
+    font-size: 13px;
+    padding: 8px;
+    border: 2px solid white;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .list {
+    width: 92%;
+    margin: 100px auto 20px;
+    gap: 15px;
+  }
+
+  .item {
+    padding: 15px;
+  }
+
+  .group {
+    width: 85%;
+    gap: 15px;
+    font-size: 11px;
+  }
+
+  .answer {
+    padding: 4px;
+  }
+
+  .arrow {
+    font-size: 11px;
+    padding: 6px;
+    border: 1.5px solid white;
+  }
 }

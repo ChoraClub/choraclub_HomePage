@@ -1,6 +1,5 @@
 .footersection {
   width: 95%;
-
   margin: 0 auto;
   padding-top: 100px;
   display: flex;
@@ -30,8 +29,16 @@
 }
 
 .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 51px;
   height: 51px;
+}
+
+.icon img {
+  width: 100%;
+  height: 100%;
 }
 
 .icon:hover {
@@ -43,7 +50,8 @@
   height: 100%;
   background: url("/assets/img/subscribe_gif.gif");
   background-repeat: no-repeat;
-  background-size: 100%;
+  /* background-size: 100%; */
+  background-size: cover;
   display: flex;
   position: relative;
   flex-direction: column;
@@ -75,7 +83,9 @@
   border: 1px solid white;
   border-radius: 50px;
   padding: 12px 30px;
+  cursor: pointer;
 }
+
 .subscribe:hover {
   transform: scale(1.1);
 }
@@ -83,11 +93,147 @@
 .upbutton {
   z-index: 5;
   background: transparent;
-
   text-align: center;
   cursor: pointer;
 }
 
 .upbutton:hover {
   cursor: pointer;
+}
+
+
+@media screen and (max-width:768px) {
+  .section1 {
+    margin-bottom: 40px;
+  }
+
+  .iconlist {
+    display: flex;
+    gap: 1.3rem;
+  }
+
+  .icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .email {
+    padding: 10px 20px;
+  }
+
+  .subscribe {
+    padding: 10px 20px;
+  }
+
+  .upbutton {
+    width: 6vw;
+  }
+}
+
+@media screen and (max-width:600px) {
+  .section1 {
+    margin-bottom: 30px;
+  }
+
+
+  .copyrighttext {
+    font-size: 13px;
+  }
+
+  .iconlist {
+    display: flex;
+    gap: 1.2rem;
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .footersection {
+    gap: 20px;
+  }
+
+  .section2 {
+    padding: 15px 40px;
+  }
+
+  .inputsection {
+    margin: 6px 0;
+  }
+
+  .input_button {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .email {
+    padding: 8px 18px;
+    border-radius: 40px;
+    margin-right: 0px;
+  }
+
+  .subscribe {
+    border-radius: 40px;
+    padding: 8px 18px;
+    width: max-content;
+  }
+
+  .upbutton {
+    width: 8vw;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .copyrighttext {
+    font-size: 10px;
+  }
+
+  .iconlist {
+    display: flex;
+    gap: 1.1rem;
+  }
+
+  .icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .section2 {
+    padding: 10px 30px;
+  }
+
+  .section2 p {
+    font-size: 12px;
+  }
+
+  .email {
+    padding: 6px 18px;
+    border-radius: 30px;
+    margin-right: 0px;
+    font-size: 12px;
+
+  }
+
+  .subscribe {
+    border-radius: 30px;
+    padding: 6px 18px;
+    width: max-content;
+    font-size: 12px;
+  }
+
+  .upbutton {
+    width: 7vw;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .email {
+    width: 80%;
+  }
+
+  .upbutton {
+    width: 9vw;
+  }
 }

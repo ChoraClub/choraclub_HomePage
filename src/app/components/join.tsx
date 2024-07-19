@@ -41,7 +41,7 @@ const Join = () => {
 
         }
       })
-      .to(joinRef.current, { opacity: 1, duration: 1, zIndex: 100 }, 0)
+      .to(joinRef.current, { opacity: 1, duration: 1, zIndex: 1 }, 0)
       .fromTo(
         [joinImg1.current, joinImg2.current],
         {

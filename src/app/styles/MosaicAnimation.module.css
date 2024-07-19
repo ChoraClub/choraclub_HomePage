@@ -31,3 +31,10 @@
   transition: opacity 0.2s ease-in-out; /* Optional: for smooth transition */
   opacity: 1;
 }
+
+
+@media screen and (max-width:600px) {
+  .container {
+    margin: 40px auto 0;
+  }
+}

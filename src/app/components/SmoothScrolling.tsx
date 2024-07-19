@@ -1,7 +1,8 @@
 "use client";
 import { ReactLenis } from "@studio-freight/react-lenis";
+import { memo } from "react";
 
-function SmoothScrolling({ children }: Readonly<{
+const SmoothScrolling = memo(function SmoothScrolling({ children }: Readonly<{
     children: React.ReactNode;
 }>) {
     return (
@@ -9,6 +10,6 @@ function SmoothScrolling({ children }: Readonly<{
             {children}
         </ReactLenis>
     );
-}
+});
 
 export default SmoothScrolling;

@@ -1,10 +1,12 @@
 .section {
+  width: 100%;
+  height: max-content;
   display: flex;
   flex-direction: column;
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   padding-top: 90px;
-  min-height: 100vh;
+  padding-bottom: 90px;
   background: rgb(13, 14, 28);
   background: linear-gradient(
     180deg,
@@ -18,19 +20,20 @@
   opacity: 1;
 }
 
-.e172 {
-  background: url("../../../public/e172.svg");
-  background-repeat: no-repeat;
-  background-size: 80%;
-  background-position: center;
+/* .e172 {
   width: 100%;
   height: 100%;
   position: absolute;
-  bottom: -20%;
+  bottom: 0;
+  background: url("../../../public/e172.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: center;
+  background-position-y: bottom;
   z-index: 0;
-}
+} */
 
-.e235 {
+/* .e235 {
   background: url("../../../public/e235.svg");
   background-repeat: no-repeat;
   background-size: 20%;
@@ -42,65 +45,69 @@
   z-index: 14;
   left: 50px;
   opacity: 0;
-}
+} */
 
-.e233 {
-  background: url("../../../public/e233.svg");
-  background-repeat: no-repeat;
-  background-position: center center;
+/* .e233 {
   width: 100%;
   height: 100%;
-  background-size: 100vw;
   position: absolute;
   top: 0;
+  background: url("../../../public/e233.svg");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
   z-index: 23;
 }
 
 .e234 {
-  background: url("../../../public/e234.svg");
-  background-repeat: no-repeat;
-  background-size: 97vw;
-  margin: 0 auto;
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
-  background-position: center center;
+  background: url("../../../public/e234.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center top;
   z-index: 40;
 }
 
 .e170 {
-  background: url("../../../public/e170.svg");
-  background-repeat: no-repeat;
   width: 100%;
   height: 100%;
   position: absolute;
   bottom: 0;
   left: 0;
+  background: url("../../../public/e170.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left bottom;
   z-index: 60;
 }
 
 .e174 {
-  background: url("../../../public/e174.svg");
-  background-repeat: no-repeat;
-  background-size: 30%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
   width: 100%;
   height: 100%;
-  position: absolute;
-  right: -70%;
-  bottom: -50%;
+  background: url("../../../public/e174.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right bottom;
   z-index: 70;
 }
 
 .v152 {
-  background: url("../../../public/v152.svg");
-  background-size: 100vw;
   width: 100%;
   height: 100%;
   position: absolute;
-  top: 7%;
+  top: 0;
+  background: url("../../../public/v152.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
   z-index: 50;
-}
+} */
 
 .heading {
   color: #2969ff;
@@ -118,7 +125,7 @@
   align-items: center;
   justify-content: center;
   gap: 30px;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   z-index: 100;
   margin: 0 auto;
 }
@@ -143,6 +150,7 @@
   border: 1px solid transparent;
   transition: all 0.5s ease;
   opacity: 0;
+  /* text-align: justify; */
 }
 
 .divHead {
@@ -155,8 +163,70 @@
   font-weight: 300;
   font-family: var(--font-poppins);
 }
+
 .workDiv:hover {
   box-shadow: 0px 4px 127.3px 0px #004dff,
     inset 0px 4px 214.8px 0px rgba(35, 57, 255, 0.48);
   border: 1px solid #004dff;
+}
+
+@media screen and (max-width: 1400px) {
+  .workDiv {
+    width: 31%;
+    padding: 40px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .workDiv {
+    width: max(400px, 29%);
+    height: 350px;
+  }
+  .e233,
+  .e234,
+  .v152 {
+    background-size: contain;
+  }
+  .heading {
+    margin-bottom: 70px;
+  }
+}
+
+@media screen and (max-width: 922px) {
+  .workDiv {
+    width: 45%;
+    height: 390px;
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .heading {
+    margin-bottom: 40px;
+  }
+  .workDiv {
+    width: 100%;
+  }
+  .section {
+    z-index: 1;
+  }
+  .heading {
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+  .workDiv {
+    height: max-content;
+  }
+  .divHead {
+    font-size: 1.2rem;
+  }
+  .divPara {
+    font-size: 1rem;
+  }
 }

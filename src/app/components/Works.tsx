@@ -4,6 +4,7 @@ import styles from "../styles/works.module.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import Image from "next/image";
 
 const work = [
   {
@@ -46,7 +47,7 @@ const Works = () => {
         .fromTo(
           workHeadingRef.current,
           {
-            y: -500,
+            y: -50,
             opacity: 0,
           },
           {
@@ -59,7 +60,7 @@ const Works = () => {
         .fromTo(
           [boxRefs.current],
           {
-            y: 200,
+            y: 100,
             opacity: 0,
           },
           {
@@ -130,13 +131,19 @@ const Works = () => {
   };
   return (
     <div className={`${styles.section} worksParent`} ref={worksRef}>
-      <div className={styles.e172}></div>
-      <div className={styles.e235}></div>
-      <div className={styles.e233}></div>
-      <div className={styles.e234}></div>
-      <div className={styles.e170}></div>
-      <div className={styles.e174}></div>
-      <div className={styles.v152}></div>
+      {/* <div className={styles.e172}></div> */}
+      {/* <div className={styles.e235}></div> */}
+      {/* <div className={styles.e233}></div> */}
+      {/* <div className={styles.e234}></div> */}
+      {/* <div className={styles.e170}></div> */}
+      {/* <div className={styles.e174}></div> */}
+      {/* <div className={styles.v152}></div> */}
+      <Image
+        fill
+        src="/v152.svg"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        alt="background for works"
+      />
       <h5 className={styles.heading} ref={workHeadingRef}>
         How Chora Club Works
       </h5>
