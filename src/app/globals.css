@@ -33,3 +33,18 @@ a {
     color-scheme: dark;
   }
 }
+
+#onlyLargeScreenView {
+  display: grid;
+}
+#onlyMobileView {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  #onlyLargeScreenView {
+    display: none;
+  }
+  #onlyMobileView {
+    display: block;
+  }
+}

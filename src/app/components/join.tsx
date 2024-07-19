@@ -7,7 +7,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-import { useClientMediaQuery } from "@/hooks/useClientMediaQuery";
+// import { useClientMediaQuery } from "@/hooks/useClientMediaQuery";
 
 const Join = () => {
   const joinRef = useRef(null);
@@ -15,7 +15,7 @@ const Join = () => {
   const joinImg2 = useRef(null);
   const joinContent1 = useRef(null);
   const joinContent2 = useRef(null);
-  const isMediumDevice = useClientMediaQuery("only screen and (max-width : 992px)");
+  // const isMediumDevice = useClientMediaQuery("only screen and (max-width : 992px)");
   const handlejoinClick = () => {
     window.open("https://app.chora.club/")
   }
@@ -30,7 +30,7 @@ const Join = () => {
         scrollTrigger: {
           trigger: joinRef.current,
           start: "top bottom",
-          end: `${isMediumDevice ? '+=50 top' : "+=200 top"}`,
+          end: "+=100 top",
           // end: `+=${scrollValue / 6} top`,
           toggleActions: "play none none reverse",
           scrub: false,

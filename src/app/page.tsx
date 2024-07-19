@@ -14,7 +14,8 @@ import {
   defaultPreviewImageURL,
   framePreviewImageURL,
 } from "@/config/constants";
-import dynamic from "next/dynamic";
+
+import HeroSection from "./components/HeroSection";
 
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -66,18 +67,17 @@ export async function generateMetadata(): Promise<Metadata> {
     },
   };
 }
-const DynamicHeroSection = dynamic(() => import('./components/HeroSection'), { ssr: false });
-const DynamicJoinSection = dynamic(() => import('./components/join'), { ssr: false });
+
 
 const page = () => {
 
   return (
     <div className={poppins.className}>
 
-      <DynamicHeroSection />
+      <HeroSection />
 
       <Works />
-      <DynamicJoinSection />
+      <Join />
       <QueAns />
     </div>
   );
