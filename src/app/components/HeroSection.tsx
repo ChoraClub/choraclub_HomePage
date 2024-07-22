@@ -92,16 +92,17 @@ function HeroSection() {
     const mm = gsap.matchMedia();
 
     mm.add({
-      small: '(max-width : 992px)',
-      large: '(min-width: 768px)',
+      small: '(max-width : 768px)',
+      large: '(min-width: 769px)'
     }, (ctx) => {
-      const small = ctx.conditions;
+      const conditions = ctx.conditions;
+      console.log(conditions)
       const tln = gsap
         .timeline({
           scrollTrigger: {
             trigger: rectangleRef.current,
             start: "top top",
-            end: `${small ? '+=550%' : "+=600%"}`,
+            end: "+=600%",
             // end: `+=${scrollValue / 6} top`,
             toggleActions: "play none none reverse",
             scrub: 1,
@@ -128,7 +129,7 @@ function HeroSection() {
           }
         });
 
-      if (small) {
+      if (conditions?.small) {
         console.log("small")
 
         //small screens animations
@@ -428,6 +429,7 @@ function HeroSection() {
 
 
       } else {
+        console.log("large")
         tln.fromTo(
           discoverImageRef.current,
           {
