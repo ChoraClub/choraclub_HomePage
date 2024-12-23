@@ -1,0 +1,170 @@
+
+
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.2) 50%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.textContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  white-space: nowrap;
+  /* height: 100%; */
+}
+
+.text {
+  font-size: 120px;
+  font-weight: 400;
+  position: relative;
+  color: #191919;
+  overflow: hidden;
+  border: none;
+  /* display: flex;
+  align-items: center;
+  height: 100%; */
+}
+
+.text::before {
+  content: "Discover.Learn.Engage.";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    white 0%,
+    #191919 30%,
+    transparent 100%
+  );
+  background-size: 200% 200%;
+  background-position: -100% 0;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: moveBackground 12s ease-in-out infinite alternate;
+}
+
+@keyframes moveBackground {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 50% 100%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 0%;
+  }
+}
+
+.headingContainer {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  left: 5%;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  z-index: 2;
+}
+
+.AppButton {
+  padding: 18px 36px;
+  background: #004dff;
+  border-radius: 99px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  cursor: pointer;
+  border: none;
+  color: white;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: absolute;
+  bottom: 20%;
+  left: 7%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.scrollDown {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.downArrow {
+  width: 30px;
+  height: 30px;
+}
+
+.scrollText {
+  color: white;
+}
+
+.downButton {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+  padding: 0;
+  outline: none;
+}
+
+.downButton:hover {
+  /* background: rgba(255, 255, 255, 0.2); */
+  /* border-color: rgba(255, 255, 255, 0.5); */
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.downIcon {
+  font-size: 26px;
+  color: white;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}

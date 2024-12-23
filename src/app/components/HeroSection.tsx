@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 import styles from "../styles/herosection.module.css";

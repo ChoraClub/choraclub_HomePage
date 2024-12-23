@@ -1,0 +1,84 @@
+.headingMain{
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+}
+.headingIcon{
+  color:#004dff;
+  width: 130px;
+  height: 130px;
+}
+.heading{
+  font-size: 86px;
+  font-weight: 500;
+  color: #004dff;
+  text-align: left;
+}
+.line{
+  background-color: white;
+  width: 100%;
+  height: 1px;
+}
+
+.faqSection {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.accordionItem {
+  /* margin-bottom: 1rem; */
+  color: white;
+  overflow: hidden;
+  border-bottom: 1px solid white;
+}
+
+.accordionButton {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 30px 0;
+  text-align: left;
+  background: transparent;
+  border: none;
+  font-weight: 400;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.accordionButton:hover {
+  opacity: 0.8;
+}
+
+.accordionButton.active {
+  font-weight: 400;
+}
+
+.accordionContent {
+  padding: 0 40px 30px 0;
+  border-bottom: 1px solid white;
+  color: white;
+  line-height: 1.6;
+  font-size: 16px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.8s ease-in-out, opacity 0.8s ease-in-out;
+}
+
+.icon {
+  transition: transform 0.8s ease;
+  width: 40px;
+  height: 40px;
+}
+
+.active .icon {
+  transform: rotate(-45deg);
+}
+
+.closeIcon{
+  width: 40px;
+  height: 40px;
+}

@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import React, { useState, useEffect } from "react";
 import styles from "../styles/footer.module.css";
 import { Toaster, toast } from "react-hot-toast";

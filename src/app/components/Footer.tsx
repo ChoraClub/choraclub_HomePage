@@ -1,9 +1,10 @@
-"use client";
+// "use client";
 import React, { useState } from "react";
 import styles from "../styles/footer.module.css";
 import MosaicAnimation from "./MosaicAnimation";
 import Image from "next/image";
 import Newsletter from "./Newsletter";
+import NewsletterMail from "./NewsLetterMail";
 
 const Footer = () => {
   const handleSocialClick = (link: any) => {
@@ -68,7 +69,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <Newsletter />
+      {/* <Newsletter /> */}
+      <NewsletterMail/>
       <MosaicAnimation />
     </div>
   );

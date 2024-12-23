@@ -1,0 +1,89 @@
+.container{
+    background-color: white;
+    height: 100vh;
+    display: flex;
+
+}
+.component{
+    display: flex;
+    flex-direction: column;
+    flex:1;
+    margin-left: 100px;
+    justify-content: center;
+}
+.title{
+    color: black;
+    font-size: 60px;
+    max-width: 600px;
+}
+.description{
+    color: black;
+    max-width: 500px;
+}
+/* .button{
+    width: fit-content;
+    background-color: #0500FF;
+    border: none;
+    border-radius: 999px;
+    padding: 14px 16px;
+    margin-top: 30px;
+    font-size: 16px;
+} */
+
+
+/* From Uiverse.io by BHARGAVPATEL1244 */ 
+.button {
+    outline: none;
+    cursor: pointer;
+    border: none;
+    padding: 0.9rem 2rem;
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    position: relative;
+    display: inline-block;
+    letter-spacing: 0.05rem;
+    font-weight: 700;
+    font-size: 17px;
+    border-radius: 500px;
+    overflow: hidden;
+    background: white;
+    color: white;
+    width: fit-content;
+    margin-top: 30px;
+    border: 2px solid #0500FF;
+   }
+   .button span {
+    position: relative;
+    z-index: 10;
+    transition: color 0.4s;
+   }
+   
+   .button:hover span {
+    color: #0500FF;
+   }
+   
+   .button::before,
+   .button::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+   }
+   
+   .button::before {
+    content: "";
+    background: #0500FF;
+    width: 120%;
+    left: -10%;
+    transition: transform 0.8s cubic-bezier(0.3, 1, 0.8, 1);
+   }
+   
+   .button:hover::before {
+    transform: translate3d(100%, 0, 0);
+   }
+   
+   
+

@@ -1,0 +1,73 @@
+.container {
+  background-color: black;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.heading {
+  color: #004dff;
+  font-size: 64px;
+  font-weight: 400;
+  margin-top: 20px;
+}
+.cardContainer {
+  display: flex;
+  gap: 20px;
+  margin: 60px;
+  margin-top: 40px;
+}
+.card {
+  flex: 1;
+  border: 1px solid white;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+.card:hover .title,
+.card:hover .description {
+  color: black;
+}
+.card:hover {
+  background-color: white;
+}
+.card:hover .line {
+  background-color: black;
+}
+.card:hover .number {
+  color: #004dff;
+}
+.cardTop {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.title {
+  font-weight: 600;
+  font-size: 60px;
+  line-height: 70px;
+  max-width: 400px;
+}
+.description {
+  margin-top: 14px;
+  font-size: 15px;
+  font-weight: 200;
+}
+.numberContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.line {
+  width: 100%;
+  height: 1px;
+  background-color: white;
+  margin: 12px auto;
+}
+.number {
+  font-weight: 500;
+  font-size: 350px;
+  line-height: 85%;
+}

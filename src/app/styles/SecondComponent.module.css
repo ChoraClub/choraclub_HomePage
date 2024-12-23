@@ -1,0 +1,108 @@
+
+  .headingContainer {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    left: 5%;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    z-index: 2;
+  }
+  
+  .AppButton {
+    padding: 18px 36px;
+    background: #004dff;
+    border-radius: 99px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    cursor: pointer;
+    border: none;
+    color: white;
+  }
+  
+  
+  .secondPage {
+    background: radial-gradient(farthest-corner at 0px 350px, #02b1dd 0%, #004dff 30%, #091e94 52%, #000f63 70%, #000d58 100%);
+    position: relative;
+    width: 100vw;
+    height: 101vh;
+    position: absolute;
+    top: 100vh;
+  }
+  
+  .secondPage::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+  }
+  
+  .dot {
+    color: #ff8a00;
+  }
+  
+  .textSecond {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 120px;
+    font-weight: 500;
+    color: white;
+  }
+  
+ 
+  
+  .featureContainer {
+    background-color: black;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
+    display: flex;
+  }
+  
+  .feature {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    transition: background-color 0.5s ease;
+    position: relative;
+    padding: 20px 0;
+  }
+  
+  .featureImage {
+    width: 86px;
+    height: 86px;
+    margin-left: 20px;
+    transform-origin: center;
+    transition: transform 0.5s ease;
+  }
+  
+  .featureText {
+    color: white;
+    padding: 20px;
+    font-size: 18px;
+    transition: color 0.5s ease;
+  }
+  
+  .feature[data-animated="true"] {
+    background-color: white;
+  }
+  
+  .feature[data-animated="true"] .featureText {
+    color: black;
+  }

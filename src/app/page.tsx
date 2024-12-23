@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Works from "./components/Works";
 import Join from "./components/join";
 import QueAns from "./components/QueAns";
@@ -14,9 +14,14 @@ import {
   defaultPreviewImageURL,
   framePreviewImageURL,
 } from "@/config/constants";
-
 import HeroSection from "./components/HeroSection";
-
+import HomeSection from "./components/HomeSection";
+import HomeSectionNew from "./components/HomeSectionNew";
+import HowItWorks from "./components/HowItWorks";
+import Feature from "./components/Feature";
+import FAQ from "./components/FAQ";
+import SecondComponent from "./components/SecondComponent";
+import SmoothScrolling from "./components/SmoothScrolling";
 
 export async function generateMetadata(): Promise<Metadata> {
   const name = "Chora Club";
@@ -68,17 +73,23 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-
 const page = () => {
-
+  
   return (
     <div className={poppins.className}>
-
-      <HeroSection />
-
-      <Works />
-      <Join />
-      <QueAns />
+      {/* <div className="container">
+        <div className="section"><HomeSectionNew/></div>
+        <div className="section">  <SecondComponent /></div>
+        <div className="section">   <HowItWorks /></div>
+        <div className="section"> <Feature /></div>
+        <div className="section"> <FAQ /></div>
+      </div> */}
+        
+      <HomeSectionNew/>
+      <SecondComponent />
+        <HowItWorks />
+        <Feature />
+        <FAQ />
     </div>
   );
 };
