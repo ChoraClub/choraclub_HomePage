@@ -1,21 +1,77 @@
+.container {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
 
-
-
-.overlay {
+.page {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 0, 0, 0.4) 0%,
-    rgba(0, 0, 0, 0.2) 50%,
-    rgba(0, 0, 0, 0.4) 100%
-  );
-  z-index: 1;
-  pointer-events: none;
+  transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
 }
+
+.homePage {
+  z-index: 2;
+}
+
+
+.secondPage {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  background: linear-gradient(180deg, rgba(0, 13, 42, 0.95) 0%, rgba(0, 77, 255, 0.1) 100%);
+  color: white;
+  /* padding: 2rem; */
+  z-index: 1;
+  transform: translateY(100%);
+  opacity: 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 77, 255, 0.5) transparent;
+  scroll-behavior: smooth;
+}
+
+.secondPage::-webkit-scrollbar {
+  width: 8px;
+}
+
+.secondPage::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.secondPage::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 77, 255, 0.5);
+  border-radius: 4px;
+}
+
+.secondPage.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.secondPage > * {
+  margin-bottom: 2rem;
+}
+
+.secondPage.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.homePage.hide {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+/* .secondPageContent {
+  max-height: 100vh;
+  overflow-y: auto; 
+  padding-right: 10px; 
+} */
+
 
 .textContainer {
   position: absolute;
@@ -24,7 +80,7 @@
   transform: translate(-50%, -50%);
   z-index: 2;
   white-space: nowrap;
-  /* height: 100%; */
+  transition: top 0.5s ease-out;
 }
 
 .text {
@@ -34,9 +90,6 @@
   color: #191919;
   overflow: hidden;
   border: none;
-  /* display: flex;
-  align-items: center;
-  height: 100%; */
 }
 
 .text::before {
@@ -61,19 +114,10 @@
 }
 
 @keyframes moveBackground {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  25% {
-    background-position: 50% 100%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  75% {
-    background-position: 50% 0%;
-  }
+  0%, 100% { background-position: 0% 50%; }
+  25% { background-position: 50% 100%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 0%; }
 }
 
 .headingContainer {
@@ -100,41 +144,7 @@
   color: white;
 }
 
-.buttonContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  position: absolute;
-  bottom: 20%;
-  left: 7%;
-  transform: translateX(-50%);
-  z-index: 10;
-}
-
-.scrollDown {
-  background: transparent;
-  border: 1px solid white;
-  color: white;
-  cursor: pointer;
-  border-radius: 50px;
-  transition: all 0.3s ease;
-  width: 38px;
-  height: 38px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.downArrow {
-  width: 30px;
-  height: 30px;
-}
-
-.scrollText {
-  color: white;
-}
-
-.downButton {
+.arrowButton {
   position: absolute;
   bottom: 40px;
   left: 50%;
@@ -142,29 +152,93 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
   z-index: 2;
   padding: 0;
   outline: none;
 }
 
-.downButton:hover {
-  /* background: rgba(255, 255, 255, 0.2); */
-  /* border-color: rgba(255, 255, 255, 0.5); */
+.arrowUp {
+  bottom: calc(30% + 20px);
+}
+
+.arrowButton:hover {
   transform: translateX(-50%) translateY(-2px);
 }
 
-.downIcon {
+.arrowIcon {
   font-size: 26px;
   color: white;
   animation: bounce 2s infinite;
 }
 
 @keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-5px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
+
+.featureContainer {
+  background: linear-gradient(180deg, rgba(0, 13, 42, 0.95) 0%, rgba(0, 77, 255, 0.1) 100%);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  display: flex;
+  transform: translateY(100%);
+  transition: transform 0.5s ease-out;
+}
+
+.showFeatures .featureContainer {
+  transform: translateY(0);
+}
+
+.feature {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  transition: all 0.5s ease;
+  position: relative;
+  padding: 20px 0;
+  background: linear-gradient(135deg, rgba(0, 77, 255, 0.1) 0%, rgba(0, 240, 255, 0.05) 100%);
+}
+
+.activeFeature {
+  background: white;
+}
+
+.activeFeature .featureText {
+  color: black;
+  font-weight: 500;
+}
+
+.activeFeature .featureImage {
+  transform: scale(2) translateY(-20px);
+}
+
+.featureImage {
+  width: 86px;
+  height: 86px;
+  margin-left: 20px;
+  transform-origin: center top;
+  transition: all 0.5s ease;
+  filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.3));
+}
+
+.featureText {
+  color: white;
+  padding: 20px;
+  font-size: 18px;
+  transition: all 0.5s ease;
+  text-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+}
+
+/* .secondPage {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-size: 2rem;
+  background: linear-gradient(180deg, rgba(0, 13, 42, 0.95) 0%, rgba(0, 77, 255, 0.1) 100%);
+} */

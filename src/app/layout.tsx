@@ -43,9 +43,9 @@ export default function RootLayout({
           }}
         />
         {/* {children} */}
-        {/* <SmoothScrolling> */}
+        <SmoothScrolling>
           {children}
-          {/* </SmoothScrolling> */}
+          </SmoothScrolling>
         <Analytics />
       </body>
     </html>

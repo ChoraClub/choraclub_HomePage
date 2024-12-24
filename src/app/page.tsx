@@ -77,19 +77,11 @@ const page = () => {
   
   return (
     <div className={poppins.className}>
-      {/* <div className="container">
-        <div className="section"><HomeSectionNew/></div>
-        <div className="section">  <SecondComponent /></div>
-        <div className="section">   <HowItWorks /></div>
-        <div className="section"> <Feature /></div>
-        <div className="section"> <FAQ /></div>
-      </div> */}
         
       <HomeSectionNew/>
-      <SecondComponent />
-        <HowItWorks />
+        {/* <HowItWorks />
         <Feature />
-        <FAQ />
+        <FAQ />  */}
     </div>
   );
 };
