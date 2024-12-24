@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useState, useEffect, useRef } from "react";
+import React, { useCallback, useState , useEffect, useRef} from "react";
 import Image from "next/image";
 import styles from "../styles/HomeSectionNew.module.css";
 import logo from "../../../public/assets/img/cc-logo.svg";
@@ -9,51 +9,98 @@ import Feature from "./Feature";
 import FAQ from "./FAQ";
 
 const HomeSectionNew = () => {
-  const [scrollStage, setScrollStage] = useState(0);
+  const [showFeatures, setShowFeatures] = useState(false);
   const [activeFeature, setActiveFeature] = useState(-1);
-  const lastScrollTime = useRef(Date.now());
-  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const lastScrollY = useRef(0);
+  const scrollTimeout = useRef<NodeJS.Timeout>();
+  const [isScrollingUp, setIsScrollingUp] = useState(false);
+  const [scrollState, setScrollState] = useState('top'); // 'top', 'features', 'nextPage'
+  const scrollLock = useRef(false);
+
+  const toggleFeatures = () => {
+    setShowFeatures(!showFeatures);
+    if (!showFeatures) {
+      setActiveFeature(-1);
+    }
+  };
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
-    if (scrollStage === 1) {
+    if (showFeatures) {
       timer = setInterval(() => {
         setActiveFeature((prev) => (prev + 1) % feature.length);
-      }, 2000);
+      }, 2000); // Change feature every 2 seconds
     }
     return () => clearInterval(timer);
-  }, [scrollStage]);
+  }, [showFeatures]);
+
 
   useEffect(() => {
-    const handleWheel = (e: WheelEvent) => {
-  
-      // e.preventDefault();
-      const now = Date.now();
-      if (now - lastScrollTime.current < 500) return; // Debounce scroll events
-      
-      const direction = e.deltaY > 0 ? 'down' : 'up';
-      
+    const handleScroll = (e: WheelEvent) => {
+      e.preventDefault();
+
+      if (scrollLock.current) return;
+
+      const deltaY = e.deltaY;
+      const isScrollingDown = deltaY > 0;
+
+      // Lock scroll during transitions
+      scrollLock.current = true;
+      setTimeout(() => {
+        scrollLock.current = false;
+      }, 800); // Adjust this timing to match your transition duration
+
+      if (isScrollingDown) {
+        // Scrolling DOWN logic
+        switch (scrollState) {
+          case "top":
+            setShowFeatures(true);
+            setScrollState("features");
+            break;
+          case "features":
+            setScrollState("nextPage");
+            window.scrollTo({
+              top: window.innerHeight,
+              behavior: "smooth",
+            });
+            break;
+        }
+      } else {
+        // Scrolling UP logic
+        switch (scrollState) {
+          case "nextPage":
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
+            setShowFeatures(true);
+            setScrollState("features");
+            break;
+          case "features":
+            setShowFeatures(false);
+            setScrollState("top");
+            break;
+        }
+      }
+    };
+
+    if (containerRef.current) {
+      containerRef.current.addEventListener("wheel", handleScroll, {
+        passive: false,
+      });
+    }
+
+    return () => {
+      if (containerRef.current) {
+        containerRef.current.removeEventListener("wheel", handleScroll);
+      }
       if (scrollTimeout.current) {
         clearTimeout(scrollTimeout.current);
       }
-
-      if (direction === 'down') {
-        setScrollStage(prev => Math.min(prev + 1, 2));
-      } else {
-        setScrollStage(prev => Math.max(prev - 1, 0));
-      }
-
-      lastScrollTime.current = now;
-
-      scrollTimeout.current = setTimeout(() => {
-        // Reset logic if needed
-      }, 500);
-
     };
+  }, [scrollState]);
 
-    window.addEventListener('wheel', handleWheel, { passive: false });
-    return () => window.removeEventListener('wheel', handleWheel);
-  }, []);
 
   const handleLaunchApp = useCallback(() => {
     window.open("https://app.chora.club", "_blank", "noopener,noreferrer");
@@ -87,8 +134,10 @@ const HomeSectionNew = () => {
   ];
 
   return (
-    <div className={styles.container}>
-      <div className={`${styles.page} ${styles.homePage} ${scrollStage >= 1 ? styles.showFeatures : ''} ${scrollStage === 2 ? styles.hide : ''}`}>
+    <>
+    <div ref={containerRef}  style={{ overflow: "hidden", height: "100vh" }}>
+      <div style={{ width: "100vw", height: "100vh", position: "relative" }}>
+     
         <Image
           src="/videos/video8.gif"
           alt="Animated background"
@@ -96,7 +145,7 @@ const HomeSectionNew = () => {
           objectFit="cover"
           priority
         />
-        <div className={styles.textContainer}>
+        <div className={`${styles.textContainer} ${showFeatures ? styles.textUp : ''}`}>
           <h1 className={styles.text}>Discover.Learn.Engage.</h1>
         </div>
 
@@ -108,22 +157,23 @@ const HomeSectionNew = () => {
         </div>
 
         <button
-          className={`${styles.arrowButton} ${scrollStage >= 1 ? styles.arrowUp : ''}`}
-          onClick={() => setScrollStage(scrollStage === 0 ? 1 : 0)}
-        >
-          {scrollStage >= 1 ? (
-            <FaAngleUp className={styles.arrowIcon} />
-          ) : (
-            <FaAngleDown className={styles.arrowIcon} />
-          )}
-        </button>
+            className={`${styles.arrowButton} ${showFeatures ? styles.arrowUp : ''}`}
+            onClick={toggleFeatures}
+          >
+            {showFeatures ? (
+              <FaAngleUp className={styles.arrowIcon} />
+            ) : (
+              <FaAngleDown className={styles.arrowIcon} />
+            )}
+          </button>
 
-        <div className={`${styles.featureContainer} ${scrollStage >= 1 ? styles.slideUp : ''}`}>
+         {showFeatures && (
+        <div className={`${styles.featureContainer} ${styles.slideUp}`}>
           {feature.map((feature, index) => (
-            <div 
-              key={index} 
-              className={`${styles.feature} ${index === activeFeature ? styles.activeFeature : ''}`}
-            >
+             <div 
+             key={index} 
+             className={`${styles.feature} ${index === activeFeature ? styles.activeFeature : ''} ${index < activeFeature ? styles.inactiveFeature : ''}`}
+           >
               <Image
                 className={styles.featureImage}
                 src={feature.image}
@@ -135,16 +185,13 @@ const HomeSectionNew = () => {
             </div>
           ))}
         </div>
+      )}
       </div>
-
-      <div className={`${styles.page} ${styles.secondPage} ${scrollStage === 2 ? styles.show : ''}`}>
-      <div className={styles.secondPageContent}>
-    <HowItWorks />
-    <Feature />
-    <FAQ />
-  </div>
-      </div>
-    </div>
+     </div>
+     {scrollState === "nextPage" && <HowItWorks />}
+      {scrollState === "nextPage" && <Feature />}
+      {scrollState === "nextPage" && <FAQ />}
+     </>
   );
 };
 
