@@ -151,8 +151,8 @@ const HomeSectionNew = () => {
 
         <div className={styles.headingContainer}>
           <Image src={logo} alt="Chora Club Logo" />
-          <button className={styles.AppButton} onClick={handleLaunchApp}>
-            Launch app
+          <button className={styles.button} onClick={handleLaunchApp}>
+            <span>Launch app</span>
           </button>
         </div>
 
